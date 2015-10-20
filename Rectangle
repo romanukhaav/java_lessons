@@ -1,0 +1,45 @@
+package lesson5;
+
+import java.util.Scanner;
+
+public class rectangle {
+	
+	private static Scanner num;
+	private static int height;
+	private static int widht;
+	private static int i;
+
+	public static void main (String[] args){
+		System.out.println("Введите высоту прямоугольника");					
+		try{
+		num = new Scanner(System.in);
+		height = num.nextInt();
+		
+		System.out.println("Введите ширину прямоугольника");
+		num = new Scanner(System.in);
+		widht = num.nextInt();
+		}
+		catch(Exception e){
+            System.out.println("Введите число!");
+            System.exit(1);
+        }           
+		
+		for (i=1; i<=widht-1; i++) { //рисуем верхнюю сторону
+			System.out.print("* ");
+			};
+		System.out.println("*");
+			
+		for (i=1; i<height-1; i++) {//рисуем боковые стороны
+			System.out.print('*');
+			for (int j = 0; j<widht-2; j++) {
+				System.out.print("  ");	
+			}
+			System.out.println(" *");
+		}
+		
+		for (i=1; i<=widht; i++) { //рисуем нижнюю сторону
+			System.out.print("* ");
+			};
+
+	}
+}
