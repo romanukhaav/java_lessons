@@ -40,14 +40,14 @@ public class Calendar {
         int mons = Integer.parseInt(dateFormat.format( currentDate ));
         System.out.println("Номер текущего месяца: " + mons);
         System.out.println();                               
-
-           
+  
         
         //друкуємо шапку з днів тижня і проржні дні 
         //визначаємо номер дня тижня для першого дня місяця
+        
+        System.out.println("пн вт ср чт пт сб нд");
         int nWeek = firstDay.getDay();
-        System.out.println(nWeek);
-    	System.out.println("пн вт ср чт пт сб нд");
+        if (nWeek==0){nWeek=7;}
         for (int j=1; j<nWeek; j++) {
         	System.out.print("   ");
         }
