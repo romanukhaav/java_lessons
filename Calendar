@@ -41,14 +41,17 @@ public class Calendar {
         System.out.println("Номер текущего месяца: " + mons);
         System.out.println();                               
 
-             
+           
+        
         //друкуємо шапку з днів тижня і проржні дні 
-        //(!!! доробити - визначити номер дня тижня для першого дня місяця!!!)
-        int nWeek = 4;
+        //визначаємо номер дня тижня для першого дня місяця
+        int nWeek = firstDay.getDay();
+        System.out.println(nWeek);
     	System.out.println("пн вт ср чт пт сб нд");
         for (int j=1; j<nWeek; j++) {
         	System.out.print("   ");
         }
+        
     	//цикл виводу усіх днів місяця, починається вивід з першого дня 
         //і триває доти, поки не збільшиться номер поточного місяця
         int monTest = mons;
