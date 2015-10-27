@@ -1,0 +1,21 @@
+package lesson6;
+
+//Написать программу, которая находит в массиве значения, повторяющиеся 
+//два и более раз, и показывает их на экран.
+
+
+public class ArrayRepeat {
+	public static void main(String[] args){
+		int masiv [] = {1,1,15,6,2,3,2,21,4,4,5,15,9,11};
+		
+		for(int i=0; i<masiv.length; i++){
+			for(int j=i+1; j<masiv.length; j++){
+				if (masiv[i]==masiv[j]){
+					System.out.print(masiv[i]+" ");
+				}
+				else{continue;}					
+			}			
+		}
+	}
+
+}
