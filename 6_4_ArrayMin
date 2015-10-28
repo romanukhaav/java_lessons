@@ -12,6 +12,7 @@ public class ArrayMin {
 		for(int i=0; i<masiv.length; i++){
 				if (masiv[i]%2!=0){
 					min=masiv[i];
+					break;
 				}
 		}
 		
