@@ -2,7 +2,7 @@ package lesson5;
 
 import java.util.Scanner;
 
-public class rectangle {
+public class Rectangle {
 	
 	private static Scanner num;
 	private static int height;
