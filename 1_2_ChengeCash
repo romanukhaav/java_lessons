@@ -1,0 +1,23 @@
+package Lesson1;
+
+//Напишите программу, которая переводит гривны в $,Є, российские рубли. 
+
+import java.util.Scanner;
+
+public class ChengeCash {
+	private static Scanner cash;
+	public static void main(String[] args){
+		System.out.print("Введите количество наличных в грн. :");
+		cash = new Scanner(System.in);
+	    int i = 0;
+	    if(cash.hasNextInt()) { // возвращает истинну если с потока ввода можно считать целое число
+	      i = cash.nextInt(); // считывает целое число с потока ввода и сохраняем в переменную
+	      System.out.println(i);
+	    } else {
+	      System.out.println("Вы ввели не целое число");
+	    }
+	    System.out.println("Сумма в долларах = "+i/22.5);
+	    System.out.println("Сумма в евро = "+i/25);
+	    System.out.println("Сумма в рублях = "+(int)(i/0.3));	    				
+	}
+}
