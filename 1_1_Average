@@ -1,0 +1,34 @@
+package Lesson1;
+
+//Напишите программу, вычисляющую среднее арифметическое двух чисел.
+
+import java.util.Scanner;
+
+public class Average {
+	private static Scanner num1;
+
+	public static void main(String[] args){
+		num1 = new Scanner(System.in);
+	    int i = 0;
+	    System.out.print("Введите целое число: ");
+	    if(num1.hasNextInt()) { // возвращает истинну если с потока ввода можно считать целое число
+	      i = num1.nextInt(); // считывает целое число с потока ввода и сохраняем в переменную
+	      System.out.println(i);
+	    } else {
+	      System.out.println("Вы ввели не целое число");
+	    }
+	    
+	    int j = 0;
+	    System.out.print("Введите второе целое число: ");
+	    if(num1.hasNextInt()) { // возвращает истинну если с потока ввода можно считать целое число
+	      j = num1.nextInt(); // считывает целое число с потока ввода и сохраняем в переменную
+	      System.out.println(j);
+	    } else {
+	      System.out.println("Вы ввели не целое число");
+	    }	
+		
+		int avg = ( i + j ) / 2;
+		System.out.println("Среднее арифметическое = "+avg);
+	}
+
+}
