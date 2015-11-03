@@ -1,0 +1,20 @@
+package Lesson1;
+
+//Напишите программу, которая вычисляет квадрат любого, введенного числа. 
+
+import java.util.Scanner;
+
+public class Degree {
+	private static Scanner inp;
+	public static void main (String[] ars){
+	System.out.print("Введите число :");	
+		inp = new Scanner(System.in);
+		if (inp.hasNextInt()) {
+			int i = inp.nextInt();
+			System.out.print("Квадрат числа = "+ (int)(i*i));
+		}
+		else {
+			 System.out.println("Вы ввели не целое число");
+		}
+	}
+}
