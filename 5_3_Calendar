@@ -1,13 +1,13 @@
 package lesson5;
 
 //При помощи цикла показать на экран календарь текущего месяца.
-
 //робота з датами тут http://www.seostella.com/ru/article/2012/02/05/formatirovanie-daty-v-java.html
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Calendar {
+	@SuppressWarnings("deprecation")
 	public static void main (String[] args){ 
 		
 		//тестую вивід часу
@@ -23,7 +23,7 @@ public class Calendar {
         SimpleDateFormat dateFormat = null;
               
         dateFormat = new SimpleDateFormat("d");
-        int day = Integer.parseInt(dateFormat.format( currentDate ));
+        long day = Integer.parseInt(dateFormat.format( currentDate ));
         System.out.println("Текущее число: " + day);
         
         //Тест формата вывода
@@ -61,7 +61,7 @@ public class Calendar {
             //цикл для відображення дат по сім днів; після циклу перевод каретки      	
         	for (int j=nWeek; j<8; j++){
         		//створюю дату для друку = поточна_дата-day+1=перший_день_місяця+ітерація
-	        	Date datePrint = new Date(System.currentTimeMillis()+1000*60*60*24*(i+1-day));
+	        	Date datePrint = new Date(System.currentTimeMillis()+1000*60*60*24*(i-day+1));
 	        	i++;
 	        	//перевірка чи не змінився місяць
 	            dateFormat = new SimpleDateFormat("M");
