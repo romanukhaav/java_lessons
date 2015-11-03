@@ -1,0 +1,12 @@
+package Lesson1;
+
+/*Выведите на экран следующий текст: 
+	"To be or not to be"
+	        \Shakespeare\
+*/
+
+public class PrintText {
+	public static void main(String[] args){
+		System.out.print("\"To be or not to be\" \n        \\Shakespeare\\");
+	}
+}
