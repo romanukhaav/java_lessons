@@ -23,7 +23,9 @@ public class ArrayMaxElement {public static void main (String[] arg) {
 	System.out.println("Наибольший елемент = " + MaxElements );
 	
 	
-	//заповнюю і роздруковую тестовий масив
+	//заповнюю і роздруковую тестовий масив варіант1
+	System.out.println();
+	System.out.println("Варіант1");
 	for (int i = 0; i<n-1 ; i++ ) {
 		for (int j = 0; j<n-1; j++ ) {
 			if (i<j) Array1[i][j]=1;
@@ -32,6 +34,18 @@ public class ArrayMaxElement {public static void main (String[] arg) {
 		}
 		System.out.println();
 	}
+	
+	//заповнюю і роздруковую тестовий масив варіант2
+		System.out.println();
+		System.out.println("Варіант2");
+		for (int i = 0; i<n-1 ; i++ ) {
+			for (int j = 0; j<n-1; j++ ) {
+				if (i<-j+n-1) Array1[i][j]=1;
+				else Array1[i][j]=0;
+				System.out.print(Array1[i][j] + "  ");
+			}
+			System.out.println();
+		}
 	
 }
 }
