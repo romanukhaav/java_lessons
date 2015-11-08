@@ -34,15 +34,15 @@ public class Game {
 			case 3:
 				System.out.println(" _____\n|*    |\n|  *  |\n|____*|");
 				break;
-		    case 4:
-		    	System.out.println(" _____\n|*   *|\n|     |\n|*___*|");
-		    	break;
-		    case 5:
-		    	System.out.println(" _____\n|*   *|\n|  *  |\n|*___*|");
-		    	break;
-		    case 6:
-		    	System.out.println(" _____\n| * * |\n| * * |\n|_*_*_|");
-		    	break;
+			case 4:
+		    		System.out.println(" _____\n|*   *|\n|     |\n|*___*|");
+		    		break;
+		    	case 5:
+		    		System.out.println(" _____\n|*   *|\n|  *  |\n|*___*|");
+		    		break;
+		    	case 6:
+		    		System.out.println(" _____\n| * * |\n| * * |\n|_*_*_|");
+		    		break;
 		}	
 	}
 	
@@ -54,7 +54,7 @@ public class Game {
 	
 	public static void main (String [] arg){
 		Game newG = new Game();	
-
+		System.out.println("ИГРА - КОСТИ \n");
 		System.out.println("Введите, кто бросает первым:\n1 - игрок\n2 - компьютер");
 		
 		scan = new Scanner(System.in);
