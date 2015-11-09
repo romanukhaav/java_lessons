@@ -13,8 +13,15 @@ public class Radix {
 	private static Scanner readNumber;
 	
 	//метод преобразования числа с десятеричной в указываемую систему счисления
-	private int transfer (int num, int radix) {
-		return num*radix;
+	private void transfer (int n, int radix) {
+		int i=0;
+		int Arr [] = new int [n]; 
+		for (; n>0; n=n/radix){
+			Arr[i]=n%radix;
+			i++;
+		}
+		i--;
+		for (; i>0; i--) System.out.print(Arr[i]);
 	}	
 	
 	
@@ -35,11 +42,13 @@ public class Radix {
 			if (readNumber.hasNextInt()) rad = readNumber.nextInt();
 			else System.out.println("Введите натуральное число");
 		}
+
+		
 		Radix transRad = new Radix();
 
-		int k = transRad.transfer(num, rad);
+		transRad.transfer(num, rad);
 		
-		System.out.println(k);
+		//System.out.println(k);
 		
 		
 	}	
