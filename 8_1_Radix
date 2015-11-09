@@ -1,0 +1,46 @@
+package Lesson8;
+
+/*Написать функцию, которая получает в качестве аргументов целое положительное число
+ * и систему счисления, в которую это число должно переводится (системы счисления от 2 до 36).
+ * Например, при переводе числа 27 в систему счисления 16 должно получиться 1B; 13 в 5-ю - 23;
+ * 35 в 18-ю - 1H. 
+ */
+
+import java.util.Scanner;
+
+public class Radix {
+
+	private static Scanner readNumber;
+	
+	//метод преобразования числа с десятеричной в указываемую систему счисления
+	private int transfer (int num, int radix) {
+		return num*radix;
+	}	
+	
+	
+	public static void main (String [] arg){
+		int num = 0;
+		int rad = 0;
+		
+		readNumber = new Scanner(System.in);
+		
+		while (num==0){
+			System.out.println("Введите число: ");
+			if (readNumber.hasNextInt()) num = readNumber.nextInt();
+			else System.out.println("Введите натуральное число");
+		}
+		
+		while (rad==0){
+			System.out.println("Введите систему счисления (от 2 до 36): ");
+			if (readNumber.hasNextInt()) rad = readNumber.nextInt();
+			else System.out.println("Введите натуральное число");
+		}
+		Radix transRad = new Radix();
+
+		int k = transRad.transfer(num, rad);
+		
+		System.out.println(k);
+		
+		
+	}	
+}	
