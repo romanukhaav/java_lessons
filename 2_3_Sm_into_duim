@@ -1,0 +1,41 @@
+import java.util.Scanner;
+
+/** Известно, что 1 дюйм равен 2.54 см.
+ * Разработать приложение, переводящие дюймы 
+ * в сантиметры и наоборот. Диалог с пользователем 
+ * реализовать через систему меню.
+ */
+public class Sm_into_duim {
+	
+	public static Scanner num;
+	private static int i;
+	private static float k;
+	
+	public static void main(String[] arg){
+		System.out.println("Для переведення дюймів в сантиметри натисніть 1");
+		System.out.println("Для переведення сантиметрів в дюйми натисніть 2");
+		
+		num = new Scanner(System.in);
+		if (num.hasNextInt()){
+			i = num.nextInt();
+			if (0<i&i<=2){
+				if(i==1){
+					System.out.println("Введіть дюйми");
+					if (num.hasNextInt()){
+						k = num.nextInt();
+						System.out.println(k+"дюймів = "+(k*2.54)+"см");
+					}
+				}
+				else{
+					System.out.println("Введіть сантиметри");
+					if (num.hasNextInt()){
+						k = num.nextInt();
+						System.out.println(k+"cантиметрів = "+(k/2.54)+"дюйми");
+					}
+				}
+			}
+			else System.out.println("!!! Помилка, введіть 1 або 2");
+		}
+		else System.out.println("!!! Помилка, введіть 1 або 2");
+	}
+}
