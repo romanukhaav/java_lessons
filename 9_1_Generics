@@ -1,0 +1,35 @@
+package lesson9;
+
+//Написать шаблон функции для поиска 
+//среднего арифметического значений массива.
+
+
+
+public class Generics {
+	
+	static <M> int average(M[] arr) {
+		Integer sum = 1;
+		for(int i=0; i<arr.length; i++){
+			//sum = sum+(Integer)arr[i];
+			System.out.println(arr[i]);
+		}
+		return sum/arr.length;
+	}
+		
+	
+	public static void main(String[] args){
+		Integer masiv [] = {4,5,1,5,9,8};
+		System.out.println("Среднее арифметическое в массиве = " + average(masiv));
+		
+		Short masiv1 [] = {556, 87, 54};
+		System.out.println("Среднее арифметическое в массиве1 = " + average(masiv1));
+		
+		Double masiv2 [] = {-88.6544,-65.3556};
+		System.out.println("Среднее арифметическое в массиве2 = " + average(masiv2));
+		
+		String masiv3 [] = {"один", "два", "три"};
+		System.out.println("Среднее арифметическое в массиве2 = " + average(masiv3));
+	}
+
+
+}
