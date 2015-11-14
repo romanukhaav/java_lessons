@@ -4,32 +4,31 @@ package lesson9;
 //среднего арифметического значений массива.
 
 
-
 public class Generics {
 	
-	static <M> int average(M[] arr) {
-		Integer sum = 1;
+	static <M extends Number> Double average(M[] arr) {
+		Double sum = 0.0;
 		for(int i=0; i<arr.length; i++){
-			//sum = sum+(Integer)arr[i];
-			System.out.println(arr[i]);
+			
+			String takeToString = arr[i].toString(); //роблю приведення елементу до String 
+			//System.out.println("Test toString() = "+ takeToString); 
+			Double convToDouble = Double.parseDouble(takeToString); // конвертую String в Double
+			sum = sum+convToDouble;
+			System.out.print(arr[i]+" ");
+			
 		}
 		return sum/arr.length;
 	}
 		
 	
 	public static void main(String[] args){
-		Integer masiv [] = {4,5,1,5,9,8};
-		System.out.println("Среднее арифметическое в массиве = " + average(masiv));
+		Integer masiv1 [] = {4,5,1,5,9,8,4444444,-67};
+		System.out.println("\n Среднее арифметическое в массиве1 = " + average(masiv1)+"\n");
 		
-		Short masiv1 [] = {556, 87, 54};
-		System.out.println("Среднее арифметическое в массиве1 = " + average(masiv1));
+		Short masiv2 [] = {556, 87, 54};
+		System.out.println("\n Среднее арифметическое в массиве2 = " + average(masiv2)+"\n");
 		
-		Double masiv2 [] = {-88.6544,-65.3556};
-		System.out.println("Среднее арифметическое в массиве2 = " + average(masiv2));
-		
-		String masiv3 [] = {"один", "два", "три"};
-		System.out.println("Среднее арифметическое в массиве2 = " + average(masiv3));
+		Double masiv3 [] = {-88.64,-65.56565, 658.00274};
+		System.out.println("\n Среднее арифметическое в массиве3 = " + average(masiv3)+"\n");
 	}
-
-
 }
