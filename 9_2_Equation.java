@@ -1,46 +1,29 @@
 package lesson9;
 
-//Написать шаблон функции для поиска 
-//среднего арифметического значений массива.
+/* Написать перегруженные шаблоны функций для нахождения корней
+ * линейного (a*x + b = 0) и квадратного (a*x2+b*x + c = 0) уравнений.
+ * Замечание: в функции передаются коэффициенты уравнений. 
+ */
 
-public class Generics {
+public class Equation {
 	
-	static <M /*extends Number*/> Double average(M[] arr) {
-		try{
-			Double sum = 0.0;
-			for(int i=0; i<arr.length; i++){
-				String takeToString = arr[i].toString(); //роблю приведення елементу до String 
-				//System.out.println("Test toString() = "+ takeToString); 
-				Double convToDouble = Double.parseDouble(takeToString); // конвертую String в Double
-				sum = sum+convToDouble;
-				System.out.print(arr[i]+" ");
-				
-			}
-			return sum/arr.length;
-		}
-		catch (Exception e) {
-			System.out.println("Ошибка! Ваш масив содержит нечисловые значения");
-			for(int i=0; i<arr.length; i++) {
-				System.out.print(arr[i]+" ");
-			}
-			return 0.00;
-		}
+	private static int equation(int a, int b){
+		int x = -b/a;
+		return x;
 	}
 	
-	public static void main(String[] args){
-		Integer masiv1 [] = {4,5,1,5,9,8,4444444,-67};
-		System.out.println("\nСреднее арифметическое в массиве1 = " + average(masiv1)+"\n");
-		
-		Short masiv2 [] = {556, 87, 54};
-		System.out.println("\nСреднее арифметическое в массиве2 = " + average(masiv2)+"\n");
-		
-		Double masiv3 [] = {-88.64,-65.56565, 658.00274};
-		System.out.println("\nСреднее арифметическое в массиве3 = " + average(masiv3)+"\n");
-		
-		Long masiv4 [] = {};
-		System.out.println("\nСреднее арифметическое в массиве4 = " + average(masiv4)+"\n");
-		
-		String masiv5 [] = {"один", "два", "три"};
-		System.out.println("\nСреднее арифметическое в массиве2 = " + average(masiv5));
+	private static void equation(int a, int b, int c){
+		int x1 = (- b+(int)Math.sqrt(b*b-4*a*c))/(2*a);
+		int x2 = (- b-(int)Math.sqrt(b*b-4*a*c))/(2*a);
+		System.out.println("x1 = "+ x1);
+		System.out.println("x2 = "+ x2);
 	}
+
+	public static void main (String [] args) {
+		System.out.println("Решаем линейные и квадратные уравнения \n");
+		System.out.println("Результат работы функции equation(2,8) \n x = "+equation(2,8)+"\n");
+		System.out.println("Результат работы функции equation(1,1,-6)");
+		equation(1,1,-6);
+		ReadConsole.readInt();
+	}	
 }
