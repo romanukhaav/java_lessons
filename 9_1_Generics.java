@@ -37,7 +37,7 @@ public class Generics {
 		Double masiv3 [] = {-88.64, -65.565, 658.0027};
 		System.out.println("\nСреднее арифметическое в массиве3 = " + average(masiv3)+" \n");
 		
-		Long masiv4 [] = {};
+		Long masiv4 [] = {1l, 34l, -455l};
 		System.out.println("\nСреднее арифметическое в массиве4 = " + average(masiv4)+"\n");
 		
 		String masiv5 [] = {"один", "два", "три"};
