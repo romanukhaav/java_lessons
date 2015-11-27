@@ -7,105 +7,111 @@ package lesson10;
 
 
 public class ArraySortFunc {
-	
+	// метод сортування при трьох вхідних параметрах
 	public static <M> void arraySortFunc(M[] arr, int arrayLength, int sortIndex) {
-		//try{
+		try{
 			//створюємо конвертований масив
+			System.out.println("\n\n Исходный масив");
 			Double arrayConverted [] = new Double [arrayLength];	
 			for(int i=0; i<arr.length; i++){
 				String takeToString = arr[i].toString();	//роблю приведення елементу до String 
 				arrayConverted[i] = Double.parseDouble(takeToString); // конвертую String в Double
 				System.out.print(arrayConverted[i]+" ");
 			}
-			System.out.println("\n\n сортування за зростанням");
 			
-			//сортуємо масив - сортування за зростанням
-			Double arraySorted[] = new Double [arrayLength];
-			arraySorted[0]=arrayConverted[0];
-			for (int j=1; j<arrayConverted.length; j++) {
+			//сортуємо масив
+			Double compareElement;
+			String str ="";
+			for (int j=0; j<arrayConverted.length; j++) {
+				compareElement=arrayConverted[j];
 				
-			
-					//знаходимо найменший елемент масиву
-					Double compareElement=arrayConverted[j];
-					for (int i=0; i<arrayConverted.length; i++) {
-						if (compareElement>arrayConverted[i] && compareElement>=arraySorted[j-1]) compareElement=arrayConverted[i];
+				for (int i=0; i<arrayConverted.length; i++) {
+					if (sortIndex!=0) { //сортування за спаданням
+						str = "убыванию !!!";
+						if (compareElement>arrayConverted[i] ) {
+							compareElement=arrayConverted[i];
+							arrayConverted[i]=arrayConverted[j];
+							arrayConverted[j]=compareElement;
+						}
 					}
-		//			System.out.println("\n\n найменший елемент масиву = "+compareElement);
-			
-					arraySorted[j]=compareElement;
+					else{ //сортування за зростанням
+						if (compareElement<arrayConverted[i] ) {
+							str = "возростанию !!!";
+							compareElement=arrayConverted[i];
+							arrayConverted[i]=arrayConverted[j];
+							arrayConverted[j]=compareElement;
+						}
+					}
+				}			
 			}
 			
-			
-			/*Double arraySorted[] = new Double [arrayLength];
-			Double compareElement;	
-			arraySorted[0]=arrayConverted[0];
-			for(int i=0; i<arrayConverted.length; i++){
-				compareElement = arrayConverted[i];
-				int k=i;
-				if (k==0) k++;
-				for(int j=0; j<arrayConverted.length; j++){
-					if (compareElement>=arrayConverted[j]&&compareElement<arraySorted[k-1]) {
-					compareElement=arrayConverted[j];
-					//arrayConverted[j]=arrayConverted[i];
-					}
-				}
-				arraySorted[i]=compareElement;
-			}
-			*/
-			
-			for(int i=0; i<arraySorted.length; i++){ System.out.print(arraySorted[i]+" ");}
-		/*}
+			System.out.println("\n!!! сортировка по "+str);
+			for (int i=0; i<arrayConverted.length; i++)
+				System.out.print(arrayConverted[i]+" "); //друкуємо сортований масив			
+		}
 		
 		catch (Exception e) {
-			System.out.println(e);
 			System.out.println("Ошибка! Ваш масив содержит нечисловые значения");
+			System.out.println(e);
 			for(int i=0; i<arr.length; i++) {
 				System.out.print(arr[i]+" ");
 			}
-			//return 0.00;
 		}
-		
 	}	
 	
+	//перегружений метод для двох елементів
 	public static <M> void arraySortFunc(M[] arr, int arrayLength) {
-			try{
-				Double sum = 0.0;
-				for(int i=0; i<arr.length; i++){
-					String takeToString = arr[i].toString(); //роблю приведення елементу до String 
-					//System.out.println("Test toString() = "+ takeToString); 
-					Double convToDouble = Double.parseDouble(takeToString); // конвертую String в Double
-					sum = sum+convToDouble;
-					System.out.print(arr[i]+"  ");
-					
-				}
-				//return sum/arr.length;
+		try{
+			//створюємо конвертований масив
+			System.out.println("\n\n Исходный масив");
+			Double arrayConverted [] = new Double [arrayLength];	
+			for(int i=0; i<arr.length; i++){
+				String takeToString = arr[i].toString();	//роблю приведення елементу до String 
+				arrayConverted[i] = Double.parseDouble(takeToString); // конвертую String в Double
+				System.out.print(arrayConverted[i]+" ");
 			}
-			catch (Exception e) {
-				System.out.println("Ошибка! Ваш масив содержит нечисловые значения");
-				for(int i=0; i<arr.length; i++) {
-					System.out.print(arr[i]+" ");
-				}
-			}	
-		*/
+					
+			//сортуємо масив - сортування за спаданням			
+			System.out.println("\n сортитовка по убыванию");
+			Double compareElement;
+			for (int j=0; j<arrayConverted.length; j++) {
+				compareElement=arrayConverted[j];
+				for (int i=0; i<arrayConverted.length; i++) {
+					if (compareElement>arrayConverted[i] ) {
+						compareElement=arrayConverted[i];
+						arrayConverted[i]=arrayConverted[j];
+						arrayConverted[j]=compareElement;
+					}
+				}			
+			}
+			
+			for (int i=0; i<arrayConverted.length; i++) //друкуємо сортований масив
+				System.out.print(arrayConverted[i]+" "); 	
+		}
+		
+		catch (Exception e) {
+			System.out.println("Ошибка! Ваш масив содержит нечисловые значения");
+			System.out.println(e);
+			for(int i=0; i<arr.length; i++) //друкуємо масив
+				System.out.print(arr[i]+" ");
+		}
 	}
 	
 	
 	public static void main(String[] args){
 		Integer masiv1 [] = {46,53,-1,65,-9,82,34,-7,62,-15};
-		arraySortFunc(masiv1,10,0);
+		arraySortFunc(masiv1,10,1);
 		
-		/*
-		Short masiv2 [] = {556, 87, 54};
-		arraySortFunc(masiv2,10);
+		Short masiv2 [] = {46,53,-1,65,-9,82,34,-7,62,-15};
+		arraySortFunc(masiv2,10,0);
 		
-		Double masiv3 [] = {-88.64, -65.565, 658.0027};
+		Double masiv3 [] = {65.00,-9.00,82.00,46.00,53.00,-1.00,34.00,-7.00,62.00,-15.00};
 		arraySortFunc(masiv3,10);
 		
-		Long masiv4 [] = {1l, 34l, -455l};
-		arraySortFunc(masiv4,10);
+		Long masiv4 [] = {-9l,34l,-7l,-1l,65l,-15l,62l,46l,53l,82l};
+		arraySortFunc(masiv4,10,0);
 		
-		String masiv5 [] = {"один", "два", "три"};
+		String masiv5 [] = {"один", "два", "три","четыре", "пять", "шесть","семь", "восемь", "9", "10"};
 		arraySortFunc(masiv5,10);
-		*/
 	}
 }
