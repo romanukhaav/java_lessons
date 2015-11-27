@@ -17,19 +17,43 @@ public class ArraySortFunc {
 				arrayConverted[i] = Double.parseDouble(takeToString); // конвертую String в Double
 				System.out.print(arrayConverted[i]+" ");
 			}
-			System.out.println();
-			//створюємо сортований масив - сортування за зростанням
-			Double arraySorted [] = new Double [arrayLength];		
-			for(int i=1; i<arrayConverted.length-1; i++){
-				arraySorted[i]=arrayConverted[0];
-				//знаходимо початковий елемент у масиві
-				for(int j=0; j<=arraySorted.length-1; j++){
-					
-					if (arraySorted[i]>=arrayConverted[j]) {arraySorted[i]=arrayConverted[j];}
-				}
-		//		System.out.print(arraySorted[0]);
+			System.out.println("\n\n сортування за зростанням");
+			
+			//сортуємо масив - сортування за зростанням
+			Double arraySorted[] = new Double [arrayLength];
+			arraySorted[0]=arrayConverted[0];
+			for (int j=1; j<arrayConverted.length; j++) {
+				
+			
+					//знаходимо найменший елемент масиву
+					Double compareElement=arrayConverted[j];
+					for (int i=0; i<arrayConverted.length; i++) {
+						if (compareElement>arrayConverted[i] && compareElement>=arraySorted[j-1]) compareElement=arrayConverted[i];
+					}
+		//			System.out.println("\n\n найменший елемент масиву = "+compareElement);
+			
+					arraySorted[j]=compareElement;
 			}
-			for(int i=0; i<arraySorted.length-1; i++){ System.out.print(arraySorted[i]+" ");}
+			
+			
+			/*Double arraySorted[] = new Double [arrayLength];
+			Double compareElement;	
+			arraySorted[0]=arrayConverted[0];
+			for(int i=0; i<arrayConverted.length; i++){
+				compareElement = arrayConverted[i];
+				int k=i;
+				if (k==0) k++;
+				for(int j=0; j<arrayConverted.length; j++){
+					if (compareElement>=arrayConverted[j]&&compareElement<arraySorted[k-1]) {
+					compareElement=arrayConverted[j];
+					//arrayConverted[j]=arrayConverted[i];
+					}
+				}
+				arraySorted[i]=compareElement;
+			}
+			*/
+			
+			for(int i=0; i<arraySorted.length; i++){ System.out.print(arraySorted[i]+" ");}
 		/*}
 		
 		catch (Exception e) {
@@ -67,7 +91,7 @@ public class ArraySortFunc {
 	
 	
 	public static void main(String[] args){
-		Integer masiv1 [] = {4,5,-41,65,-79,8,444,-67,62,-15};
+		Integer masiv1 [] = {46,53,-1,65,-9,82,34,-7,62,-15};
 		arraySortFunc(masiv1,10,0);
 		
 		/*
