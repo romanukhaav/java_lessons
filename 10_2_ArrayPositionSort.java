@@ -13,11 +13,11 @@ public class ArrayPositionSort {
 			// формуємо масив випадкових чисел
 			int arrayRandom [] = new int [14];
 			for (int i = 0; i<14; i++){
-				arrayRandom [i] = (int)(20+Math.random()*(1-40));
+				arrayRandom [i] = (int)(21+Math.random()*(-42));
 				System.out.print(arrayRandom [i]+" ");
 			}
 			
-			// Знаходимо крайній лівий відємний елемент (окремо визначаємо позицію Pos1)
+			// Знаходимо крайній лівий відємний елемент (визначаємо позицію Pos1)
 			int Pos1 = -1;
 			for (int i = 0; i<14; i++){
 				if (arrayRandom [i]<0) { 
@@ -26,7 +26,7 @@ public class ArrayPositionSort {
 				}
 			}
 			
-			// Знаходимо крайній правий відємний елемент (окремо визначаємо позицію Pos2)
+			// Знаходимо крайній правий відємний елемент (визначаємо позицію Pos2)
 			int Pos2 = -1;
 			for (int i = 13; i>0; i--){
 				if (arrayRandom [i]<0) {
