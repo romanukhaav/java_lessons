@@ -39,7 +39,7 @@ public class Legenda {
 		for (int i=1; i<=64; i++) {
 			N = N.multiply(BigInteger.valueOf(2)); 
 			N.add(BigInteger.valueOf(1));
-		}  
+		}
 		
 		System.out.println("усіх переміщень = "+N);
 		System.out.println("хвилин на всі переміщення = "+N.divide(BigInteger.valueOf(60)));
@@ -47,5 +47,32 @@ public class Legenda {
 		System.out.println("днів на всі переміщення = "+N.divide(BigInteger.valueOf(3600*24)));
 		System.out.println("років на всі переміщення = "+N.divide(BigInteger.valueOf(3600*24*365)));
 		System.out.println("років на всі переміщення = "+N.divide(BigInteger.valueOf(3600*24*365)));
+		
+		
 	}
+	
+	// реалізація переміщення масиву //
+
+	// перекладання 64 елемнта можливе, коли зверху немає 63 елемента, тобто коли m1[63]=0
+	// і коли вільне місце для нього у третьому масиві, тобто коли m3[64]=0
+	
+	// загальний принцип рекурсії
+	/* muv_piram(64,m1,m3) = muv_piram(63,m1,m2) + muvdisk(64,m1,m3) + muv_piram(63,m2,m3)
+	 * muv_piram(63,m1,m3) = muv_piram(62,m1,m2) + muvdisk(63,m1,m3) + muv_piram(62,m2,m3)
+	 * muv_piram(62,m1,m3) = muv_piram(61,m1,m2) + muvdisk(62,m1,m3) + muv_piram(61,m2,m3)
+	 * .......
+	 * muv_piram(2,m1,m3)  = muv_piram(1,m1,m2) +  muvdisk(2,m1,m3) +  muv_piram(1,m2,m3)
+	 * muv_piram(1,m1,m3)  = muv_piram(0,m1,m2) +  muvdisk(1,m1,m3) +  muv_piram(0,m2,m3) = muvdisk(1,m1,m3)
+	 */
+	
+	
+	//muv_piram(63,m1,m2) = muv_piram(62,m1,m2) + muvdisk(64,m1,m3) + muv_piram(63,m2,m3)
+
+	/* функція muv_piram(1,m1,m3) - здійснює перекладання muvdisk(1,m1,m3) ЛИШЕ при умові, що працює з одним 
+	 * елементом а не з пірамідкою, коли у нас пірамідка функція рекурсивон викликає сама себе
+	 *
+	 *
+	 * 
+	 * 
+	 */
 }
