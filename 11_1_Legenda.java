@@ -27,34 +27,51 @@ public class Legenda {
 	 * для обчислення рухів поміщаємо у цикл з 64 разів
 	 */ 
 	
-	static void arrayMover() {
-		
-	}
-	
 	public static void main(String[] arg) {
-		 BigInteger N = BigInteger.valueOf(1);
-		 
-		// BigInteger d = с.multiply(b.add(BigInteger.valueOf(2))); // d - с * (b + 2)
-		 
-		for (int i=1; i<=64; i++) {
+		
+		int disks = 5; //задаємо кількість дисків (бо 64 то забагато :) )
+		
+		System.out.println("Кількість дисків буде = "+disks);
+		BigInteger N = BigInteger.valueOf(1);
+		 	 
+		for (int i=1; i<disks; i++) {
 			N = N.multiply(BigInteger.valueOf(2)); 
-			N.add(BigInteger.valueOf(1));
+			N = N.add(BigInteger.valueOf(1));
 		}
 		
-		System.out.println("усіх переміщень = "+N); //припускаємо, що 1 переміщення робиться за секунду
+		System.out.println("\n(припускаємо, що 1 переміщення робиться за секунду) ");
+		System.out.println("секунд на всі переміщення = "+N);
 		System.out.println("хвилин на всі переміщення = "+N.divide(BigInteger.valueOf(60)));
-		System.out.println("годин на всі переміщення = "+N.divide(BigInteger.valueOf(3600)));
-		System.out.println("днів на всі переміщення = "+N.divide(BigInteger.valueOf(3600*24)));
-		System.out.println("років на всі переміщення = "+N.divide(BigInteger.valueOf(3600*24*365)));
-		System.out.println("років на всі переміщення = "+N.divide(BigInteger.valueOf(3600*24*365)));		
+		System.out.println("годин на всі переміщення  = "+N.divide(BigInteger.valueOf(3600)));
+		System.out.println("днів на всі переміщення   = "+N.divide(BigInteger.valueOf(3600*24)));
+		System.out.println("років на всі переміщення  = "+N.divide(BigInteger.valueOf(3600*24*365)));
 		
+		System.out.println("\nПочатковий масив");
+		
+		//створюємо та виводимо двомірний масив з глибиною n
+		int array [][]= new int[disks][3];
+		for (int i = 0; i<array.length; i++) {
+			array[i][0]=i+1;
+			array[i][1]=0;
+			array[i][2]=0;
+			System.out.println(array[i][0]+" "+array[i][1]+" "+array[i][2]);
+		}
+		
+		//застосовуємо нашу функцію переміщення елементів та виводимо результат
+
+		muvPiram(disks,0,1,2,array);
+		
+		System.out.println("\nДиски переміщено!!!");
+		for (int i = 0; i<array.length; i++) {
+			System.out.println(array[i][0]+" "+array[i][1]+" "+array[i][2]);
+		}
 	}
 	
-	// реалізація переміщення масиву //
+	
+	/* !!реалізація переміщення масиву!!
 
-
-	// загальний принцип рекурсії
-	/* muv_piram(64,m1,m3) = muv_piram(63,m1,m2) + muv_disk(64,m1,m3) + muv_piram(63,m2,m3)
+	 * загальний принцип рекурсії
+	 * muv_piram(64,m1,m3) = muv_piram(63,m1,m2) + muv_disk(64,m1,m3) + muv_piram(63,m2,m3)
 	 * ----------------------------
 	 * muv_piram(63,m1,m2) = muv_piram(62,m1,m3) + muv_disk(63,m1,m2) + muv_piram(62,m3,m2)
 	 * muv_disk(64,m1,m3)
@@ -74,21 +91,37 @@ public class Legenda {
 	 * muv_piram(1,m1,m3)  = muv_piram(0,m1,m2) +  muv_disk(1,m1,m3) +  muv_piram(0,m2,m3) = muv_disk(1,m1,m3)
 	 */
 	
+	// для зручності скористаємось двомірним масивом 64*3
+	// будемо переміщати елементи з першого стовбчика масиву у третій
+  
+    //функція переміщення пірамідки з n елеминтів, з стовбчика m0 в m2 через m1
+	public static int[][] muvPiram(int n,int m0, int m1, int m2, int[][] array){ 
+	// функція muvPiram - здійснює перекладання muvDisk ЛИШЕ при умові, що працює з одним 
+	//елементом, а коли у нас пірамідка функція рекурсивоно викликає сама себе
+		if(n==0) return array;
+		muvPiram(n-1,m0,m2,m1,array);
+		muvDisk(n,m0,m2,array);
+		muvPiram(n-1,m1,m0,m2,array);
+		return array;
+		}
 	
-  /*
-	 muv_piram(int n,m1[],m2[],m3[]){
-		muv_piram(n-1,m1[],m2[],m3[]);
-		muv_disk(m1[n],m3[n]);
-		muv_piram(n-1,m2[],m3[],m1[]);
-	}	
-  */
-	/* функція muv_piram(1,m1,m3) - здійснює перекладання muv_disk(1,m1,m3) ЛИШЕ при умові, що працює з одним 
-	 * елементом а не з пірамідкою, коли у нас пірамідка функція рекурсивоно викликає сама себе
-	 *
-	 * Вимоги до перміщення:
-	 * перекладання 64 елемнта можливе, коли зверху немає 63 елемента, тобто коли m1[63]=0
+	//функція переміщення елементу n з стовбчика m0 в m2
+	public static int[][] muvDisk(int n, int m0, int m2, int[][] array){ 		
+		array[n-1][m0]=0;
+		array[n-1][m2]=n;
+		
+		System.out.println("\nПроміжне відображення"); 
+		for (int i = 0; i<array.length; i++) {
+			System.out.println(array[i][0]+" "+array[i][1]+" "+array[i][2]);
+		}
+		
+		return  array;
+	}
+  
+	/* Реалізувати додаткові умови на перевірку коректності переміщень:
+	 * 1) перекладання 64 елемнта можливе, коли зверху немає 63 елемента, тобто коли m1[63]=0
 	 * і коли вільне місце для нього у третьому масиві, тобто коли m3[64]=0
-	 * 
-	 * елементи масиву, які переміщуються лягають спочатку на дно іншого масиву, тобто у комірки від 64
+	 * 2) елементи масиву, які переміщуються лягають спочатку на дно іншого масиву, тобто у комірки від 64
 	 */
+	
 }
