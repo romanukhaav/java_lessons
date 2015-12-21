@@ -14,11 +14,7 @@ public class ArrayAddArray {
 public static void main (String [] arg){
 		
 		ArrayList <Integer> arr1  = new ArrayList<Integer>();
-		Collections.sort(arr1, new Comparator.ArrayList() {
-	        public int compare(arr1 o1, arr1 o2) {
-	                return o1.toString().compareTo(o2.toString());
-	        }
-		});
+
 		
 		ArrayList <Integer> arr2  = new ArrayList<Integer>();
 		for (int i=0; i <10; i++) 	{
@@ -30,9 +26,10 @@ public static void main (String [] arg){
 		System.out.println(arr2);
 		
 		arr1.addAll(arr2);
-		Object[] arr =	arr1.toArray();
+		System.out.println(arr1);
 		
-		System.out.println(arr);
+		Collections.sort(arr1);
+		System.out.println(arr1);
 
 	}
 }
