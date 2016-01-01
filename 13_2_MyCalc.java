@@ -9,7 +9,9 @@ import javax.swing.*;
 public class MyCalc extends JFrame {
 private static final long serialVersionUID = 1L;
 
-  private String result = "";
+  private String result = "0";
+  private boolean newNumLable = true;
+  boolean getResulAgain = false;
   private Integer x1, x2, operation;
   
   private JLabel countLabel = new JLabel("= " + result);
@@ -72,70 +74,89 @@ private static final long serialVersionUID = 1L;
     
     oneNum.addActionListener(new ActionListener(){
   	  public void actionPerformed(ActionEvent e) {
+  		  if (newNumLable == true) result = "";
   		  result = result+1;     //Добавляем символ
   		  updateCounter(); //Сообщаем приложению, что количество изменилось
+  		  newNumLable = false;
   	  }
   	});
     
     twoNum.addActionListener(new ActionListener(){
     	  public void actionPerformed(ActionEvent e) {
+    		  if (newNumLable == true) result = "";
     		  result = result+2;     //Добавляем символ
     		  updateCounter(); //Сообщаем приложению, что количество изменилось
+    		  newNumLable = false;
     	  }
     });
     
     threNum.addActionListener(new ActionListener(){
     	  public void actionPerformed(ActionEvent e) {
+    		  if (newNumLable == true) result = "";
     		  result = result+3;     //Добавляем символ
     		  updateCounter(); //Сообщаем приложению, что количество изменилось
+    		  newNumLable = false;
     	  }
     });
       
     fourNum.addActionListener(new ActionListener(){
       	  public void actionPerformed(ActionEvent e) {
+      		  if (newNumLable == true) result = "";
       		  result = result+4;     //Добавляем символ
       		  updateCounter(); //Сообщаем приложению, что количество изменилось
+      		  newNumLable = false;
       	  }
     });
       
     fiveNum.addActionListener(new ActionListener(){
       	  public void actionPerformed(ActionEvent e) {
+      		  if (newNumLable == true) result = "";
       		  result = result+5;     //Добавляем символ
       		  updateCounter(); //Сообщаем приложению, что количество изменилось
+      		  newNumLable = false;
       	  }
     });
         
     sixNum.addActionListener(new ActionListener(){
        	  public void actionPerformed(ActionEvent e) {
+       		  if (newNumLable == true) result = "";
        		  result = result+6;     //Добавляем символ
        		  updateCounter(); //Сообщаем приложению, что количество изменилось
+       		  newNumLable = false;
        	  }
     });
     /*oneNum twoNum threNum  fourNum  fiveNum  sixNum   sevenNum eightNum nineNum  zerroNum*/
            
     sevenNum.addActionListener(new ActionListener(){
          public void actionPerformed(ActionEvent e) {
+        	 if (newNumLable == true) result = "";
         	 result = result+7;     //Добавляем символ
         	 updateCounter(); //Сообщаем приложению, что количество изменилось
+        	 newNumLable = false;
        	  }
     });
           
     eightNum.addActionListener(new ActionListener(){
     	public void actionPerformed(ActionEvent e) {
-       	  result = result+8;     //Добавляем символ
-       	  updateCounter(); //Сообщаем приложению, что количество изменилось
+    		if (newNumLable == true) result = "";
+    		result = result+8;     //Добавляем символ
+    		updateCounter(); //Сообщаем приложению, что количество изменилось
+    		newNumLable = false;
     	}
     });
     
     nineNum.addActionListener(new ActionListener(){
   	  public void actionPerformed(ActionEvent e) {
+  		  if (newNumLable == true) result = "";
   		  result = result+9;     //Добавляем символ
   		  updateCounter(); //Сообщаем приложению, что количество изменилось
+  		  newNumLable = false;
   	  }
   	});
           
     zerroNum.addActionListener(new ActionListener(){
           	  public void actionPerformed(ActionEvent e) {
+          		  if (newNumLable == true) result = "";
           		  result = result+0;     //Добавляем символ
           		  updateCounter(); //Сообщаем приложению, что количество изменилось
           	  }
@@ -147,6 +168,7 @@ private static final long serialVersionUID = 1L;
     		  result = "";
     		  operation = 1;
     		  updateCounter(); //Сообщаем приложению, что количество изменилось
+    		  getResulAgain = false;
     	  }
     	});
     
@@ -156,6 +178,7 @@ private static final long serialVersionUID = 1L;
 		  result = "";
 		  operation = 2;
 		  updateCounter(); //Сообщаем приложению, что количество изменилось
+		  getResulAgain = false;
 	  }
 	});
     
@@ -165,6 +188,7 @@ private static final long serialVersionUID = 1L;
    		  result = "";
    		  operation = 3;
    		  updateCounter(); //Сообщаем приложению, что количество изменилось
+   		  getResulAgain = false;
    	  }
    	});
     
@@ -174,34 +198,45 @@ private static final long serialVersionUID = 1L;
   		  result = "";
   		  operation = 4;
   		  updateCounter(); //Сообщаем приложению, что количество изменилось
+  		  getResulAgain = false;
   	  }
   	});
     
     removeNum.addActionListener(new ActionListener(){
     	  public void actionPerformed(ActionEvent e) {
-    	      	result = ""; //уничтожаем запись о числе
-    	    	updateCounter(); 
+    	      	result = "0"; //уничтожаем запись о числе
+    	      	operation = 0; //уничторжаем запись о операции
+    	      	newNumLable = true;
+    	      	getResulAgain = false;
+    	    	updateCounter();
     	  }
     	});
     
     getResult.addActionListener(new ActionListener(){
-  	  public void actionPerformed(ActionEvent e) {
-  		  x2=Integer.valueOf(result);
+  	  public void actionPerformed(ActionEvent e) {  		  
+  		  if (getResulAgain == true){
+  	  		 x1=Integer.valueOf(result); 
+  		  }
+  		  else {
+	  		  x2=Integer.valueOf(result);
+  		  }
   		  switch (operation){
-  		  case 1:
-  			result = Integer.toString(x1+x2);
-  			break;
-  		  case 2:
-  			result = Integer.toString(x1-x2);
-  			break;
-  		  case 3:
-  			result = Integer.toString(x1*x2);
-  			break;
-  		  case 4:
-  			result = Integer.toString(x1/x2);
-  			break;
+			  case 1:
+				result = Integer.toString(x1+x2);
+				break;
+			  case 2:
+				result = Integer.toString(x1-x2);
+				break;
+			  case 3:
+				result = Integer.toString(x1*x2);
+				break;
+			  case 4:
+				result = Integer.toString(x1/x2);
+				break;
   		  }
   		 updateCounter(); //Сообщаем приложению, что количество изменилось
+  		 newNumLable = true;
+  		 getResulAgain= true;
   	  }
   	});
 }
@@ -214,7 +249,7 @@ public static void main(String[] args) {
 }
 
 /* Доробити:
- *  1) введення відємних чисел
- * 	2) параметри вікна калькулятора по замовчуванню
- *  3) робота з дробовими числами
+ *  1) робота з дробовими числами
+ *  2) негарно відображаються кнопки
+ *  3) неадекватна і негарна панель вводу\відображення
  */		
