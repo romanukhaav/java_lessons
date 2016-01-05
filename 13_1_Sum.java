@@ -1,9 +1,10 @@
 package lesson13;
 /* Посчитать сумму двух чисел и записать в третье.
- * (Используя AWT, Generics, классы-обертки и обработку ошибок)*/
+ * (Используя Generics, классы-обертки и обработку ошибок)*/
 
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
 
 public class Sum extends JFrame {
@@ -19,7 +20,7 @@ public class Sum extends JFrame {
 	private TextField num1;
 	private TextField num2;
 	
-	public Sum(){
+	public <T> Sum(){
 	    super("Сумма двух чисел");
 	    
 	    //Подготавливаем компоненты объекта
@@ -43,8 +44,13 @@ public class Sum extends JFrame {
 	    // добавляем слушатель кнопки и обработчик события
 	    addNum.addActionListener(new ActionListener(){
     	  public void actionPerformed(ActionEvent e) {
-    		  result = Integer.parseInt(num1.getText())+Integer.parseInt(num2.getText());
-    		  updateCounter(); //Сообщаем приложению результат
+    		  try{
+	    		  result = Integer.parseInt(num1.getText())+Integer.parseInt(num2.getText());
+	    		  updateCounter(); //Сообщаем приложению результат
+    		  }
+    		  catch(Exception err) {
+    			  countLabel.setText("  Ошибка! введите числа");
+    		  }
     	  }
     	});
      
