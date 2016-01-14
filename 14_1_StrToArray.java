@@ -8,8 +8,7 @@ import java.util.Scanner;
  */
 
 public class StrToArray {
-	private static Scanner line;
-	private static String myStr;
+	private static Scanner scan;
 
 	public static void main( String[] arg) {
 		
@@ -19,10 +18,16 @@ public class StrToArray {
 		
 		// считываем с консоли строку
 		System.out.println("Введите строку");
-		line = new Scanner(System.in);
-		if (line.hasNextLine()) myStr=line.nextLine();
+		scan = new Scanner(System.in);
+		String myStr = scan.nextLine();
 		
-		// заполняем массив
+		//проверка соответствия длинны строки и массива
+		if (myStr.toCharArray().length>arrLen){
+			System.out.println("Ошибка! - ваша строка больше чем созданный массив");
+			System.exit(0);
+		}
+		
+		//заполняем массив
 		for ( int i = 0; i<myStr.toCharArray().length; i++)
 			arr[i]=myStr.toCharArray()[i];
 		
@@ -34,8 +39,7 @@ public class StrToArray {
 		
 		System.out.println("Длинна массива = " + arrLen);
 		System.out.println("Занятых елементов = " + myStr.toCharArray().length);
-		arrLen-=myStr.toCharArray().length;
-		System.out.println("Свободных елементов = " + arrLen);
+		System.out.println("Свободных елементов = " + (arrLen-myStr.toCharArray().length));
 	}
 	
 }
