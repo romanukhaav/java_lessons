@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class DellStrSegment {
 	
 	private static Scanner scan;
-	private static int x, x1, x2;
+	private static int x1, x2;
 	private static boolean isCorrect = false;
 
 	public static void main( String[] arg) {
@@ -38,7 +38,7 @@ public class DellStrSegment {
 				continue;
 			}
 			if (x1>x2) { //расставляем концы сегмента в правилной последовательности
-				x = x1; 
+				int x = x1; 
 				x1 = x2;
 				x2 = x;
 			}
