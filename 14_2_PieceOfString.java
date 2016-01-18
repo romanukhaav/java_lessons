@@ -30,12 +30,14 @@ public class PieceOfString {
 			}
 			catch(Exception err) {
 				System.out.println("Ошибка! введите числа");
+				scan = new Scanner(System.in);
+				continue;
 			}
 			
 			//проверка позиций сегмента и длинны строки
-			if (myStr.length()<x1||myStr.length()<x2){
+			if (myStr.length()<x1||myStr.length()<x2||x1<=0||x2<=0){
 				System.out.println("Ошибка! Концы сегмента вне пределов строки");
-				System.exit(0);
+				continue;
 			}
 			if (x1>x2) { //расставляем концы сегмента в правилной последовательности
 				x = x1; 
