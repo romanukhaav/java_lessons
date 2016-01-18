@@ -6,7 +6,7 @@ import java.util.Scanner;
  * необходимо показать на экран номера по порядку всех совпадений (нумерация с единицы).
  */
 
-public class StrToArray {
+public class SymbolsInStr {
 
 	private static Scanner scan;
 	private static String symbol;
