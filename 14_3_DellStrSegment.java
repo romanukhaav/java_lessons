@@ -28,6 +28,8 @@ public class DellStrSegment {
 			}
 			catch(Exception err) {
 				System.out.println("Ошибка! введите числа");
+				scan = new Scanner(System.in);
+				continue;
 			}
 			
 			//проверка позиций сегмента и длинны строки
