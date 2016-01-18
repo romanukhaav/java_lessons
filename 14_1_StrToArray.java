@@ -22,14 +22,14 @@ public class StrToArray {
 		String myStr = scan.nextLine();
 		
 		//проверка соответствия длинны строки и массива
-		if (myStr.toCharArray().length>arrLen){
+		if (myStr.length()>arrLen){
 			System.out.println("Ошибка! - ваша строка больше чем созданный массив");
 			System.exit(0);
 		}
 		
 		//заполняем массив
-		for ( int i = 0; i<myStr.toCharArray().length; i++)
-			arr[i]=myStr.toCharArray()[i];
+		for ( int i = 0; i<myStr.length(); i++)
+			arr[i]=myStr.charAt(i);
 		
 		// вычисляем колличество занятых, свободных элементов и размер массива и выводим результаты
 		System.out.print("\nПолучен массив ");
@@ -38,8 +38,7 @@ public class StrToArray {
 			else System.out.print("_ ");
 		
 		System.out.println("Длинна массива = " + arrLen);
-		System.out.println("Занятых елементов = " + myStr.toCharArray().length);
-		System.out.println("Свободных елементов = " + (arrLen-myStr.toCharArray().length));
+		System.out.println("Занятых елементов = " + myStr.length());
+		System.out.println("Свободных елементов = " + (arrLen-myStr.length()));
 	}
-	
 }
