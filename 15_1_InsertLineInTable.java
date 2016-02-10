@@ -45,7 +45,7 @@ public static void main(String[] arg){
 				if (isLineOr==0 && posOfMov>n || isLineOr==1 && posOfMov>m || posOfMov<0) 
 					throw new NullPointerException("Позиция смещения за пределами матрицы");
 				
-				System.out.println("\nВведите значение смещения");
+				System.out.println("\nВведите значение смещения ( действительное или отрицательное число)");
 				numOfMov = scan.nextByte();
 			}
 			catch (Exception err) {
