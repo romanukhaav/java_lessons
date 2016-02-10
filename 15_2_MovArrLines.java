@@ -13,7 +13,21 @@ public class MovArrLines {
 	static byte numOfMov, posOfMov, isLineOr;
 	
 	public static void mover(ArrayList<ArrayList<Integer>> array, int numOfMov, byte posOfMov, byte isLineOr){
-		System.out.println("Все-ееее... буде ДОООБРЕЕЕЕ.. :) ");
+		
+		if (isLineOr==0){
+			// вставляем пустые строки - сдвиг вниз
+			
+			
+			// удаляем строки - перемещение вверх
+		}
+		else {
+			// вставляем пустые слолбцы - сдвиг вправо
+			
+			
+			// удаляем столбци - сдвиг влево
+		}
+		
+		
 	}
 	public static void main(String[] arg){
 		
