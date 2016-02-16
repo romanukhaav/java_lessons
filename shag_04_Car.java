@@ -18,7 +18,7 @@ public class Car {
 
 		carArr[1] = new Car("Москвич","ИЖ412", 1981, "червоний", 800, "AB3654BC");
 		carArr[2] = new Car("Volkswagen","Golf", 1985, "синій", 3000, "AС9372BC");
-		carArr[3] = new Car("Renault","Megane", 2004, "оливковий", 6000, "ВК7688BВ");
+		carArr[3] = new Car("Renault","Megane", 2004, "оливковий", 6000, "ВК7328BВ");
 		carArr[4] = new Car("Renault","Logan", 2008, "сірий", 8000, "AР3569MN");
 		carArr[5] = new Car("Volkswagen","Passat", 2008, "коричневий", 8500, "AА1293ВВ");
 		carArr[6] = new Car("Toyota","Auris", 2016, "синій", 1000, "AA3838AT");
