@@ -42,11 +42,9 @@ public class TextFilters {
 		File file = new File(fullPath);
 		try {
 			br = new BufferedReader(new InputStreamReader (new FileInputStream(file)));
-			int i=0;
 			while ((line = br.readLine()) != null) {
 				System.out.println(line);
 				fileArray.add(line); // наполняем массив строк для последующей обработки
-				i++;
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -66,7 +64,7 @@ public class TextFilters {
 		//вывод массива
 		//System.out.println(latinFilter(fileArray, filterSymbols1));
 		System.out.println("\n\n**текст отфильтрованый**\n");
-		textFilter(fileArray, filterSymbols3);
+		textFilter(fileArray, filterSymbols4);
 	}
 	
 	//метод фильтрации + вывод результатов:
