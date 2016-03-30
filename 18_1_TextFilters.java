@@ -66,11 +66,11 @@ public class TextFilters {
 		//вывод массива
 		//System.out.println(latinFilter(fileArray, filterSymbols1));
 		System.out.println("\n\n**текст отфильтрованый**\n");
-		latinFilter(fileArray, filterSymbols3);
+		textFilter(fileArray, filterSymbols3);
 	}
 	
 	//метод фильтрации + вывод результатов:
-		public static ArrayList <String> latinFilter(ArrayList <String> inputArray, String filterSymbols){
+		public static ArrayList <String> textFilter(ArrayList <String> inputArray, String filterSymbols){
 			ArrayList <String> outputArray = new ArrayList <String>();
 			char[] filterArray=filterSymbols.toCharArray();
 			for (String ln:inputArray) {
