@@ -32,7 +32,7 @@ public class TextFilters {
 		Scanner sc = new Scanner(System.in);
 		String line;
 		String mark1 = "off", mark2 = "off", mark3 = "off", mark4 = "off"; //для красоты :)
-		int h=11;
+		String h="";
 		ArrayList <String> fileArray = new ArrayList <String> (); //массив для текста
 		String filterArray[] = {"","","",""}; //массив фильтров
 		
@@ -67,16 +67,15 @@ public class TextFilters {
 				try {
 					while(true){ //нескончаемый цыкл - выход через подач нуля в метод setFilter
 						sc = new Scanner(System.in);
-						
-						while (h!=0 || h!=1 || h!=2 || h!=3 || h!=4 ) {
+						while (!h.equals("0")||!h.equals("1")||!h.equals("2")||!h.equals("3")||!h.equals("4")) {
 							System.out.println("\n\nУстановите\\удалите фильтр:"
 									+ "\n1) - кирилица; " + mark1
 									+ "\n2) - латинница; "+ mark2
 									+ "\n3) - знаки препинания; "+ mark3
 									+ "\n4) - числа; "+ mark4
 									+ "\n0) - выход из программы.");
-							h = sc.nextInt();
-							if (h==0||h==1||h==2||h==3||h==4){
+							h = sc.nextLine();
+							if (h.equals("0")||h.equals("1")||h.equals("2")||h.equals("3")||h.equals("4")){
 								textFilter(fileArray, setFilter(h,filterArray)); //вывод массива
 								//устанавливаем маркеры фильтров
 								if (filterArray[0]!="") mark1="on"; else mark1="off";
@@ -84,7 +83,7 @@ public class TextFilters {
 								if (filterArray[2]!="") mark3="on"; else mark3="off";
 								if (filterArray[3]!="") mark4="on"; else mark4="off";
 							}
-							else System.out.println("!!Введите корректное значение!!");
+							else System.out.println("\n\n!!Введите корректное значение!!");
 						}
 					}
 					
@@ -109,25 +108,25 @@ public class TextFilters {
 		
 	
 	//метод установки фильтров
-		public static String setFilter(int num, String Filter[]){
+		public static String setFilter(String num, String Filter[]){
 			switch (num){
-			case 1:
+			case "1":
 				if (Filter[0]=="") Filter[0]=SYMBOLS1;
 				else Filter[0]="";
 				return Filter[0]+Filter[1]+Filter[2]+Filter[3];
-			case 2:
+			case "2":
 				if (Filter[1]=="") Filter[1]=SYMBOLS2;
 				else Filter[1]="";
 				return Filter[0]+Filter[1]+Filter[2]+Filter[3];
-			case 3:
+			case "3":
 				if (Filter[2]=="") Filter[2]=SYMBOLS3;
 				else Filter[2]="";
 				return Filter[0]+Filter[1]+Filter[2]+Filter[3];
-			case 4:
+			case "4":
 				if (Filter[3]=="") Filter[3]=SYMBOLS4;
 				else Filter[3]="";
 				return Filter[0]+Filter[1]+Filter[2]+Filter[3];
-			case 0:
+			case "0":
 				System.out.println("\n***Досвидания***");
 				System.exit(0);
 			}
