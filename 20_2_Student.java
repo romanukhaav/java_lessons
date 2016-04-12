@@ -5,12 +5,11 @@ import java.util.Date;
 public class Student {
 
 	
-	private int stId, stAge, stAvgMark;
+	private int stId, stAge, stAvgMark; //ID, возраст, средняя оценка студента
 	
 	public int getStAge() {
 		return stAge;
 	}
-
 	public void setStAge(int stAge) {
 		this.stAge = stAge;
 	}
@@ -18,7 +17,6 @@ public class Student {
 	public int getStId() {
 		return stId;
 	}
-
 	public void setStId(int stId) {
 		this.stId = stId;
 	}
@@ -26,41 +24,38 @@ public class Student {
 	public int getStAvgMark() {
 		return stAvgMark;
 	}
-
 	public void setStAvgMark(int stAvgMark) {
 		this.stAvgMark = stAvgMark;
 	}
-
+	
+	private String stName; //имя студента
 	public String getStName() {
 		return stName;
 	}
-
 	public void setStName(String stName) {
 		this.stName = stName;
 	}
-
-	private String stName;
-	private Date stEntryDate;
-	private Group group;
+	
+	private Group group; //группа студента
 	public Group getGroup() {
 		return group;
 	}
-
 	public void setGroup(Group group) {
 		this.group = group;
 	}
+	
+	private Date stEntryDate; //дата поступления
 
-	public String toString(){
+	public String toString(){  //переписываем вывод
 		return "\nПривет я " + this.getStName()
 				+", мне " + this.getStAge() + " лет."
 				+"\nЯ учусь в группе " + this.getGroup().getGrName()
-				+", мой ID = "+ this.getStId();
-		
-	}
+				+", мой ID = "+ this.getStId();	
+	}	
 	
 	//инициализатор
 	{
-		System.out.println("Встречайте - у нас новый студент!");
+		System.out.println("Встречайте - у нас новый студент!");	
 	}
 	
 	public Student(String name, int age, Group gr) {
