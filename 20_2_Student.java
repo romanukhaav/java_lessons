@@ -60,7 +60,7 @@ public class Student {
 	
 	//инициализатор
 	{
-		
+		System.out.println("Встречайте - у нас новый студент!");
 	}
 	
 	public Student(String name, int age, Group gr) {
