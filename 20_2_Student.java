@@ -47,7 +47,7 @@ public class Student {
 	private Date stEntryDate; //дата поступления
 
 	public String toString(){  //переписываем вывод
-		return "\nПривет я " + this.getStName()
+		return "\nПривет! Я " + this.getStName()
 				+", мне " + this.getStAge() + " лет."
 				+"\nЯ учусь в группе " + this.getGroup().getGrName()
 				+", мой ID = "+ this.getStId();	
@@ -58,6 +58,7 @@ public class Student {
 		System.out.println("Встречайте - у нас новый студент!");	
 	}
 	
+	//конструктор
 	public Student(String name, int age, Group gr) {
 		this.stName = name;
 		this.stAge = age;
