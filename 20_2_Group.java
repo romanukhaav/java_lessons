@@ -21,8 +21,8 @@ public class Group {
 	//конструктор класса
 	public Group(String name){
 		this.grName = name;
-		this.stCount = new Counter();
-		this.getStCount().setMax(40);//максимальное колличество студентов в группе = 40
+		//this.stCount = new Counter();
+		//this.getStCount().setMax(40);//максимальное колличество студентов в группе = 40
 	}
 	
 	private String grName; //название группы
@@ -34,7 +34,7 @@ public class Group {
 		this.grName = grName;
 	}
 	
-	private Counter stCount; //счетчик студентов
+	private Counter stCount = new Counter(0,40); //счетчик студентов
 	
 	public Counter getStCount() {
 		return stCount;
