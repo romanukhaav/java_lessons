@@ -10,45 +10,55 @@ import java.io.InputStreamReader;
  * конструктор, который создаёт строку и инициализирует её строкой, полученной от пользователя.
  * Класс должен содержать методы для ввода строк с клавиатуры и вывода строк на экран.
  */
-
+	
 public class String {
 	public char symbol;
-	public ArrayList <Character> str = new ArrayList <Character>();
+	public ArrayList <Character> arrStr = new ArrayList <Character>();
 	
+	//конструктор по умолчанию, позволяющий создать строку длиной 80 символов;
 	public String(){
-		for(int i = 0; i<=80;i++)
-			this.str.add('X');
+		for(int i = 0; i<=8;i++)
+			this.arrStr.add('X');
 	}
 	
+	//конструктор, позволяющий создавать строку произвольного размера;
 	public String(int j){
 		for(int i = 0; i<=j;i++)
-			this.str.add('Y');
+			this.arrStr.add('Y');
 	}
 	
-	// конструктор со строкой, введённой с клавиатуры
-		String(ArrayList <Character> str){
-			this.str = str;
+	// конструктор, который создаёт строку и инициализирует её строкой, полученной от пользователя.
+	public String(ArrayList <Character> str){
+			this.arrStr = String.write().arrStr;
 		}
 		
 		
 		// ввод строки с клавиатуры
-		public static ArrayList <Character> write() {
-			System.out.println("Ну давай уже, вводи свою строку: ");
+		public static String write() {
+			System.out.println("Введите строку: ");
+			String st = new String(0);
+			st.arrStr = new ArrayList <Character>(); //обнуляем массив символов
 			try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-				ArrayList <Character> arrChar = new ArrayList <Character>();
-				arrChar.add((char)reader.read());
-				return arrChar;
+				for(int r ;  (r = reader.read()) != -1;){
+				
+				//int r;
+				//while ((r = reader.read()) != -1) {
+					st.arrStr.add((char)reader.read());
+				}
+				reader.close(); // close the stream
+				return st;
+		        
 			} catch (Exception e) {
 				e.printStackTrace();
-				ArrayList <Character> falseArrChar = new ArrayList <Character>();
-				return falseArrChar;
-			}
+				return st;
+			}	
 		}
+			
 	
 		
 		// вывод строки
 		public void show() {
-			System.out.println("Введённая строка: " + this.str);
+			System.out.println("Введённая строка: " + this.arrStr);
 		}
 
 	
@@ -57,14 +67,18 @@ public class String {
        /* BufferedReader bufReader = new BufferedReader(new InputStreamReader(System.in));
         java.lang.String strNumber = bufReader.readLine();        
         int number = Integer.parseInt(strNumber);
-        
-      
-            BufferedReader bReader = new BufferedReader(new InputStreamReader(System.in));
-            int num = Integer.parseInt(bReader.readLine());
-            */
+              
+        BufferedReader bReader = new BufferedReader(new InputStreamReader(System.in));
+        int num = Integer.parseInt(bReader.readLine());
+        */
+			
 		String st1 = new String();
 		String st2 = new String(20);
+		
 		st1.show();
 		st2.show();
+		String st3 = write();
+		st3.show();
+		
     }
 }
