@@ -30,19 +30,21 @@ public class String {
 			this.str = str;
 		}
 		
-		/*
+		
 		// ввод строки с клавиатуры
 		public static ArrayList <Character> write() {
 			System.out.println("Ну давай уже, вводи свою строку: ");
 			try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
 				ArrayList <Character> arrChar = new ArrayList <Character>();
-				arrChar.add(reader.read());
+				arrChar.add((char)reader.read());
 				return arrChar;
 			} catch (Exception e) {
 				e.printStackTrace();
+				ArrayList <Character> falseArrChar = new ArrayList <Character>();
+				return falseArrChar;
 			}
 		}
-		*/
+	
 		
 		// вывод строки
 		public void show() {
