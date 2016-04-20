@@ -9,8 +9,52 @@ package lesson21;
 Напишите функцию-член Person::Print(), которая выводит отформатированные данные о человеке.*/
 
 public class Persona {
+	public java.lang.String name;
+	public int age;
+	public java.lang.String male;
+	public java.lang.String phone;
 	
-	public static void main(String[] arg){
+	
+	public void setName(java.lang.String name) {
+		this.name = name;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public void setMale(java.lang.String male) {
+		this.male = male;
+	}
+
+	public void setPhone(java.lang.String phone) {
+		this.phone = phone;
+	}
+	
+	public java.lang.String toString(){
+		return "\nПривет! Я " + this.name
+			 + ".\nМне "+ this.age +" лет"
+			 + ".\nЯ " + this.male
+			 + ".\nМой телефон: " + this.phone;
+	}
+
+	public Persona(java.lang.String string, int age, java.lang.String string2, java.lang.String string3){
+		
+		this.name = string;
+		this.age = age;
+		this.male = string2;
+		this.phone = string3;
+		
+	}
+	
+	public Persona(java.lang.String name){
+		
+		this.name = name;
+		
+	}
+	
+	
+	public static void main(Str1[] arg){
 		Persona pers1 = new Persona("Валентин", 28, "мужчина", "097-777-77-77");
 		Persona pers2 = new Persona("Валентина", 26, "женщина", "093-333-33-33");
 		Persona pers3 = new Persona("Евгений");
@@ -25,50 +69,6 @@ public class Persona {
 		System.out.println(pers2);
 		System.out.println(pers3);
 		System.out.println(pers4);
-	}
-	
-	public String name;
-	public int age;
-	public String male;
-	public String phone;
-	
-	
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
-	}
-
-	public void setMale(String male) {
-		this.male = male;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-	
-	public String toString(){
-		return "\nПривет! Я " + this.name
-			 + ".\nМне "+ this.age +" лет"
-			 + ".\nЯ " + this.male
-			 + ".\nМой телефон: " + this.phone;
-	}
-
-	public Persona(String name, int age, String male, String phone){
-		
-		this.name = name;
-		this.age = age;
-		this.male = male;
-		this.phone = phone;
-		
-	}
-	
-	public Persona(String name){
-		
-		this.name = name;
-		
 	}
 
 }
