@@ -11,52 +11,58 @@ import java.io.InputStreamReader;
  * Класс должен содержать методы для ввода строк с клавиатуры и вывода строк на экран.
  */
 
-public class String {
+public class Str1 {
 	public char symbol;
 	public ArrayList <Character> str = new ArrayList <Character>();
 	
-	public String(){
+	public Str1(){
 		for(int i = 0; i<=80;i++)
-			this.str.add(' ');
+			this.str.add('X');
 	}
 	
-	public String(int j){
+	public Str1(int j){
 		for(int i = 0; i<=j;i++)
-			this.str.add(' ');
+			this.str.add('Y');
 	}
 	
 	// конструктор со строкой, введённой с клавиатуры
-		String(ArrayList <Character> str){
+		Str1(ArrayList <Character> str){
 			this.str = str;
 		}
 		
+		/*
 		// ввод строки с клавиатуры
 		public static ArrayList <Character> write() {
 			System.out.println("Ну давай уже, вводи свою строку: ");
 			try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
 				ArrayList <Character> arrChar = new ArrayList <Character>();
-				//arrChar.add(reader.readLine());
+				arrChar.add(reader.read());
 				return arrChar;
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
+		*/
 		
 		// вывод строки
-		public static void show(String str) {
-			System.out.println("Введённая строка: " + str);
+		public void show() {
+			System.out.println("Введённая строка: " + this.str);
 		}
 
 	
-	public static void main(String[] args) throws Exception
+		public static void main(String[] args)
     {
-        BufferedReader bufReader = new BufferedReader(new InputStreamReader(System.in));
+       /* BufferedReader bufReader = new BufferedReader(new InputStreamReader(System.in));
         java.lang.String strNumber = bufReader.readLine();        
         int number = Integer.parseInt(strNumber);
         
       
             BufferedReader bReader = new BufferedReader(new InputStreamReader(System.in));
             int num = Integer.parseInt(bReader.readLine());
+            */
+		Str1 st1 = new Str1();
+		Str1 st2 = new Str1(20);
+		st1.show();
+		st2.show();
     }
 }
-//недороблено :(
