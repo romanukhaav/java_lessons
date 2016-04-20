@@ -54,7 +54,7 @@ public class Persona {
 	}
 	
 	
-	public static void main(Str1[] arg){
+	public static void main(java.lang.String[] arg){
 		Persona pers1 = new Persona("Валентин", 28, "мужчина", "097-777-77-77");
 		Persona pers2 = new Persona("Валентина", 26, "женщина", "093-333-33-33");
 		Persona pers3 = new Persona("Евгений");
