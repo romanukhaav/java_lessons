@@ -11,22 +11,22 @@ import java.io.InputStreamReader;
  * Класс должен содержать методы для ввода строк с клавиатуры и вывода строк на экран.
  */
 
-public class Str1 {
+public class String {
 	public char symbol;
 	public ArrayList <Character> str = new ArrayList <Character>();
 	
-	public Str1(){
+	public String(){
 		for(int i = 0; i<=80;i++)
 			this.str.add('X');
 	}
 	
-	public Str1(int j){
+	public String(int j){
 		for(int i = 0; i<=j;i++)
 			this.str.add('Y');
 	}
 	
 	// конструктор со строкой, введённой с клавиатуры
-		Str1(ArrayList <Character> str){
+		String(ArrayList <Character> str){
 			this.str = str;
 		}
 		
@@ -50,7 +50,7 @@ public class Str1 {
 		}
 
 	
-		public static void main(String[] args)
+		public static void main(java.lang.String[] args)
     {
        /* BufferedReader bufReader = new BufferedReader(new InputStreamReader(System.in));
         java.lang.String strNumber = bufReader.readLine();        
@@ -60,8 +60,8 @@ public class Str1 {
             BufferedReader bReader = new BufferedReader(new InputStreamReader(System.in));
             int num = Integer.parseInt(bReader.readLine());
             */
-		Str1 st1 = new Str1();
-		Str1 st2 = new Str1(20);
+		String st1 = new String();
+		String st2 = new String(20);
 		st1.show();
 		st2.show();
     }
