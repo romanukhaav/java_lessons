@@ -39,20 +39,15 @@ public class Persona {
 	}
 
 	public Persona(java.lang.String string, int age, java.lang.String string2, java.lang.String string3){
-		
 		this.name = string;
 		this.age = age;
 		this.male = string2;
 		this.phone = string3;
-		
 	}
 	
 	public Persona(java.lang.String name){
-		
 		this.name = name;
-		
 	}
-	
 	
 	public static void main(java.lang.String[] arg){
 		Persona pers1 = new Persona("Валентин", 28, "мужчина", "097-777-77-77");
@@ -70,5 +65,4 @@ public class Persona {
 		System.out.println(pers3);
 		System.out.println(pers4);
 	}
-
 }
