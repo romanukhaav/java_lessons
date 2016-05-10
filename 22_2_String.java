@@ -68,6 +68,23 @@ public class String {
 			}
 			return str3;
 		}
+		
+		/*
+		// пересечение двух строк
+		public static String joint(String str1, String str2) {
+			System.out.println("\nПересечение строк: ");
+			String str3 = new String(0);
+			str3.arrStr = new ArrayList <Character>();//обнуляем массив символов
+			for(int i = 0; i<str1.arrStr.size(); i++){
+				if (str2.arrStr.contains(str1.arrStr.get(i))) {
+					str3.arrStr.add(str1.arrStr.get(i));
+					
+					continue;
+				}
+			}
+			return str3;
+		}
+		*/
 	
 	public static void main(java.lang.String[] args)  {
 	       				
