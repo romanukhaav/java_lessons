@@ -1,6 +1,7 @@
 package lesson22;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
  
@@ -26,7 +27,7 @@ public class String {
 	}
 	
 	// конструктор, который создаёт строку и инициализирует её строкой, введенной пользователем.
-	public String(ArrayList <Character> str){
+	public String(ArrayList <Character> str) throws IOException{
 			this.arrStr = String.write().arrStr;
 		}
 	
@@ -39,22 +40,19 @@ public class String {
 		}
 		
 	// ввод строки с клавиатуры
-	public static String write() {
+	public static String write() throws IOException {
 		System.out.println("\n\nВведите строку: ");
 		String st = new String(0);
 		st.arrStr = new ArrayList <Character>(); //обнуляем массив символов
-		try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		
 			for(char symbol; (symbol = (char)reader.read()) != '\n';){
 				st.arrStr.add(symbol); //наполняем массив обьекта символами строки
 			}
-			reader.close(); // close the stream
+			//reader.close(); // close the stream
 			st.arrStr.remove(st.arrStr.size()-1); //удаляем последний символ перевода каретки
-			return st;
-		       
-		} catch (Exception e) {
-			e.printStackTrace();
-			return st;
-		}	
+			return st;       
+		
 	}
 					
 	// вывод строки
@@ -80,19 +78,17 @@ public class String {
 			return str3;
 		}
 	
-	public static void main(java.lang.String[] args)  {
+	public static void main(java.lang.String[] args) throws IOException  {
 	       				
 
-		String st1 = new String("122333444455555");
-		st1.show();			
+		//String st1 = new String("122333444455555");
+		//st1.show();			
 		String st2 = write();
 		st2.show();
 		
-		//фігня :( ??
-		//String st3 = write();
-		//st3.show();
-		
-		String st3 = joint(st1,st2);
+		String st3 = write();
 		st3.show();
+		
+		joint(st3,st2).show();
 	}
 }
