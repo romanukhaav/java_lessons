@@ -36,7 +36,7 @@ public class DateMy {
 	
 	//метод сравнения двух дат возвращает колличество дней между двумя датами
 	public long diff(DateMy dayOf){
-		//Date dat1 = new Date();
+
 		Calendar cal1 = Calendar.getInstance();
 		cal1.set(this.year, this.month, this.day);
 		
@@ -49,36 +49,24 @@ public class DateMy {
 	//метод добавления дней
 	public DateMy add(int num){
 		Calendar cal1 = Calendar.getInstance();
-		System.out.println(this.year + this.month + this.day);
-		cal1.set(this.year, this.month, this.day);
 		
-		//cal1.add(Calendar.DATE,num);
-		//
+		cal1.set(this.year, this.month-1, this.day+num);
+		
 		Date date = new Date(cal1.getTimeInMillis());
-		//date.setTime(cal1.getTimeInMillis()+num*1000*60*60*24);
-		//currentDate = new Date(dat1.getTimeInMillis());
 		
 		SimpleDateFormat dateFormat = new SimpleDateFormat("d");
 		this.day = Integer.parseInt(dateFormat.format( date ));
-		
+				
 		dateFormat = new SimpleDateFormat("M");
 		this.month = Integer.parseInt(dateFormat.format( date ));
-		//--------------------
-		System.out.println(this.month);
-		
+	      		
 		dateFormat = new SimpleDateFormat("Y");
 		this.year = Integer.parseInt(dateFormat.format( date ));
-	
-		//System.out.println(cal1);
-		//System.out.println(dat1.DAY_OF_MONTH+" "+dat1.MONTH+" "+dat1.YEAR);
-		//System.out.println(dat1.getTimeInMillis());
-		
-	//	this.day = dat1.DAY_OF_MONTH;
-	//	this.month = dat1.MONTH;
-	//	this.year = dat1.YEAR;
+				
 		return this;
 	}
 	
+	//переписываем метод  toString
 	public java.lang.String toString(){
 		return "Дата: "+ this.day+" "+ this.month+" " +this.year;
 	}
@@ -94,8 +82,9 @@ public static void main(java.lang.String[] args){
         
         System.out.println("Разница в днях = "+ dat1.diff(dat2));
         
-        System.out.println("\nДобавляем дни к посл.дате");
-        System.out.println(dat2.add(5));
-    }
-	
+        int days = 375;
+        System.out.println("\nДобавляем " + days + " дней к посл.дате");
+        System.out.println(dat2.add(days));
+  }
+  
 }
