@@ -43,7 +43,7 @@ public class DateMy {
 		Calendar cal2 = Calendar.getInstance();
 		cal2.set(dayOf.year, dayOf.month, dayOf.day);
 		
-		return ((cal2.getTimeInMillis() - cal1.getTimeInMillis())/1000/60/60/24);
+		return ((cal2.getTimeInMillis()/1000/60/60/24 - cal1.getTimeInMillis()/1000/60/60/24);
 	}
 	
 	//метод добавления дней
