@@ -35,7 +35,9 @@ public class MyArrayList extends java.util.ArrayList <Integer> {
 		if (this.contains(null)) this.set(this.indexOf(null),a);
 		else {
 			System.out.println("Массив переполнен - необходимо расширить массив!");
-			return this;
+			MyArrayList list = new MyArrayList(this.size()+1);
+			list.add(a);
+			return list;
 		}
 		System.out.println(this);
 		System.out.println("Длинна листа после - "+this.size());
@@ -52,7 +54,7 @@ public class MyArrayList extends java.util.ArrayList <Integer> {
 	
 	public static void main(String[] arg){
 		try {
-		MyArrayList list1 = new MyArrayList(2);
+		MyArrayList list1 = new MyArrayList();
 		list1.add(55);
 		} catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
