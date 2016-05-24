@@ -4,8 +4,8 @@ package lesson23;
  * Перегрузите операторы: 
  * add(int, Integer) - добавление элемента в конкретное место массива 
  * add(Integer) - добавление элемента в конец массива
- * del(Integer) - удаление элемента из конца массива
- * del(int, Integer) - удаление элемента из конкретного места массива.
+ * remove() - удаление элемента из конца массива
+ * remove(int, Integer) - удаление элемента из конкретного места массива.
  */
 
 public class MyArrayList extends java.util.ArrayList <Integer> {
@@ -19,52 +19,86 @@ public class MyArrayList extends java.util.ArrayList <Integer> {
 	public MyArrayList(int i) throws IllegalArgumentException {
 		super(i);
 		System.out.println("Запуск конструктора создающего лист длинной в "+i);
-		for(int j = 0; j<i; j++) super.add(null);
-		System.out.println(this+"\n");
+		for(int j = 0; j<i; j++) 
+			super.add(null);
+		System.out.println(this+"  СОЗДАНО!!!");
 	}
 
-	public MyArrayList add(int a, int b){
-		System.out.println("Запуск переписанного метода add(int "+a+", int "+b+")");
-		System.out.println("*********");
-		return this;
+	@Override
+	//переписанный метод add(int a, Integer b) с проверкой выхода за пределы массива
+	public void add(int a, Integer b){
+		System.out.println("Запуск @Override метода add(int "+a+", int "+b+")");
+		try{
+			super.add(a, b);
+		}
+		catch (Exception e) {
+			System.out.println("ОШИБКА!!! ВЫХОД ЗА ПРЕДЕЛЫ МАССИВА!!! \nРАСШИРЯЕМ МАССИВ");
+			for (int i = a-this.size(); i<a; i++) 
+				super.add(null);
+			super.add(a, b);
+		}
 	}
 	
+	/* перегруженный метод add; метод не изменяет текущий объект,
+	но возвращает новый объект с уже добавленным елементом */
 	public MyArrayList add(int a){
-		System.out.println("Запуск переписанного метода add(int "+a+")");
-		System.out.println("Длинна листа до - "+this.size());
+		System.out.println("Запуск метода add(int "+a+")");
 		if (this.contains(null)) this.set(this.indexOf(null),a);
 		else {
 			System.out.println("Массив переполнен - необходимо расширить массив!");
 			MyArrayList list = new MyArrayList(this.size()+1);
+			for(int j = 0; j<this.size(); j++)
+				list.set(j,this.get(j));
+			System.out.println("!!!! "+list);
 			list.add(a);
 			return list;
 		}
 		System.out.println(this);
-		System.out.println("Длинна листа после - "+this.size());
 		return this;
 	}
 	
-	public void del(){
-		System.out.println("Хa");
+	public Integer remove(){
+		System.out.println("Запуск метода remove()");
+		return super.remove(this.size()-1);
 	}
-	public void del(int a){
-		System.out.println("Хa-xa");
+	
+	@Override
+	public Integer remove(int a){
+		System.out.println("Запуск метода remove("+a+")");
+		try{
+			return super.remove(a);
+			
+		}
+		catch (Exception e) {
+			System.out.println("ОШИБКА!!! ВЫХОД ЗА ПРЕДЕЛЫ МАССИВА!!! \nУДАЛЯЕМ ПОСЛЕДНИЙ ЭЛЕМЕНТ");
+			return super.remove(this.size()-1);
+		}
 	}
 
 	
 	public static void main(String[] arg){
 		try {
-		MyArrayList list1 = new MyArrayList();
-		list1.add(55);
+		MyArrayList list1 = new MyArrayList(1);
+
+		list1=list1.add(1);
+		System.out.println("****************");
+		list1=list1.add(2);
+		System.out.println("****************");
+		list1=list1.add(3);;
+		System.out.println("****************");
+		list1=list1.add(4);
+		System.out.println("****************");
+		
+		list1.add(8,99);
+		System.out.println(list1);
+		
+		list1.remove(20);
+		System.out.println(list1);
+		
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
 			System.out.println("***********"+e+"***********");
 			System.out.println("Ошибка! Введите положительное значение длинны листа!");
 			//e.printStackTrace();
 		}
-		
-		
-		//list1.add(0,8);
-		//System.out.println(list1);
 	}
 }
