@@ -131,7 +131,7 @@ public class TimeRV {
 	public static void main(String [] arg) throws IOException {
 		
 		TimeRV time1 = new TimeRV();
-		time1.setConvert(true); //устанавливаем формат времени не амер
+		time1.setConvert(false); //устанавливаем формат времени не амер
 		time1.set(20, 20);
 		System.out.println(time1);
 		time1.add(0,1);
