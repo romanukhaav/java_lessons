@@ -116,27 +116,16 @@ public class Matrix {
 		for (int x=0; x<this.rows; x++)
 			for (int y=0; y<m.lines; y++){
 				
+				//вычисление елемента новой матрицы
 				for (int i = 0; i<m.rows; i++){
 					for (int j = 0; j<this.lines; j++){
 						elem += this.get(j, x)*m.get(y,i);
 					}
 				}
 				
-				m1.set(x, y, elem);
-				elem=0;
-				
+			m1.set(x, y, elem);
+			elem=0;
 			}				
-		
-		
-		/*for (int i = 0; i<m.rows; i++){
-			for (int j = 0; j<this.lines; j++){
-				for (int n = 0; n<this.rows; n++){
-					elem += this.get(j, n)*m.get(n,i);
-				}					
-				m1.set(i, j, elem);
-				elem=0;
-			}
-		}*/
 		return m1;
 	}
 	
