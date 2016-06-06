@@ -57,7 +57,6 @@ public class Matrix {
 			}
 	}
 		
-	
 	//сложение матриц
 	public Matrix add(Matrix m){
 		System.out.println("Сложение матриц:"+"\n"+this+"++++++++\n"+m);
@@ -110,17 +109,15 @@ public class Matrix {
 			return null;
 		}
 		
-		Matrix m1 = new Matrix(this.rows, m.lines);
+		Matrix m1 = new Matrix(this.lines, m.rows);
 		System.out.println("Заполняем елементы");
 		int elem=0;
-		for (int x=0; x<this.rows; x++)
-			for (int y=0; y<m.lines; y++){
+		for (int x=0; x<this.lines; x++)
+			for (int y=0; y<m.rows; y++){
 				
 				//вычисление елемента новой матрицы
-				for (int i = 0; i<m.rows; i++){
-					for (int j = 0; j<this.lines; j++){
-						elem += this.get(j, x)*m.get(y,i);
-					}
+				for (int i = 0; i<this.rows; i++){
+						elem += this.get(x, i)*m.get(i,y);
 				}
 				
 			m1.set(x, y, elem);
@@ -144,7 +141,7 @@ public class Matrix {
 	
 	public static void main(String [] args) {
 		
-		Matrix m1 = new Matrix(3,2);
+		Matrix m1 = new Matrix(2,3);
 		System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&");
 		
 		Matrix m2 = new Matrix(3,2);
@@ -154,19 +151,29 @@ public class Matrix {
 		System.out.println(m1.asgn(m2));
 		System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&");
 		
-		System.out.println("Проверка сеттера - добавляем нули");
-		m1.set(0, 0, 0);
-		m1.set(0, 1, 0);
-		m1.set(1, 1, 0);
-		m1.set(2, 0, 0);
-		System.out.println(m1);
-		System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&");
-		
 		Matrix m3 = m1.transp();
 		System.out.println(m3);
 		System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&");
 		
 		
+		System.out.println("Проверка сеттера");
+		m1.set(0, 0, 1);
+		m1.set(0, 1, 1);
+		m1.set(0, 2, 1);
+		m1.set(1, 0, 2);
+		m1.set(1, 1, 2);
+		m1.set(1, 2, 2);
+		System.out.println(m1);
+		System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&");
+		
+		System.out.println("Умножение матриц");
+		m3 = new Matrix(3,2);
+		m3.set(0, 0, 1);
+		m3.set(1, 0, 1);
+		m3.set(2, 0, 2);
+		m3.set(0, 1, 1);
+		m3.set(1, 1, 1);
+		m3.set(2, 1, 2);
 		System.out.println("Выводим результат\n"+m1.multipl(m3));
 	}
 	
