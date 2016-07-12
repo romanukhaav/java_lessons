@@ -122,7 +122,7 @@ public abstract class Polygon implements Serializable{
 		ObjectInputStream in =  new ObjectInputStream (new FileInputStream("objects.dat"));
 		Polygon readMax = (Polygon)in.readObject();
 		in.close();
-		readMax.setVisible();
+		readMax.setVisible(); //робимо многокутник видимим
 		System.out.println(readMax);
 	}
 
