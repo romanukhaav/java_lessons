@@ -1,5 +1,12 @@
 package softServ;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /* Create classes Polygon, Triangle and Square with method for setting visibility (invisibility)
@@ -12,9 +19,16 @@ Write well commented code with examples of using these classes.
 	The object with maximal perimeter set as invisible.
 	Write code for handling the incorrect format of incoming file. */
 
-public abstract class Polygon {
+public abstract class Polygon implements Serializable{
 	
 	public ArrayList <Integer> sides;
+	public boolean isVisible = true;
+	public void setVisible(){
+		this.isVisible=true;
+	}
+	public void setInVisible(){
+		this.isVisible=false;
+	}
 	
 	public int perimeter(){
 		int res =0;
@@ -41,7 +55,9 @@ public abstract class Polygon {
 	public String toString() {
 		String res = "";
 		for (int i = 0; i<this.sides.size(); i++){
-			res+=" "+this.sides.get(i);
+			if (this.isVisible==true){
+				res+=" "+this.sides.get(i);
+			}
 		}
 		return res;
 	}
@@ -72,7 +88,7 @@ public abstract class Polygon {
 		
 	}
 	
-	public static void main(String arg[]){
+	public static void main(String arg[]) throws FileNotFoundException, IOException, ClassNotFoundException{
 		
 		Triangle triang1 = new Triangle(2,15,8);
 		System.out.println(triang1.perimeter());
@@ -80,7 +96,7 @@ public abstract class Polygon {
 		Square squar1 = new Square(2,3,4,3);
 		System.out.println(squar1.perimeter());
 		
-		Square squar2 = new Square(2,2,10,9);
+		Square squar2 = new Square(2,10,10,9);
 		System.out.println(squar2.perimeter());
 		
 		Triangle triang3 = new Triangle(1,3,1);
@@ -94,7 +110,20 @@ public abstract class Polygon {
 			if (i.perimeter()>=max.perimeter()) max=i;
 		}
 		System.out.println("Многокутник з найбільшим периметром = "+max);
+		max.setInVisible(); //робимо многокутник невидимим
+		System.out.println(Polygon.getPolygonsArr());
 				
+		//создание цепи потоков с потоком вывода объекта в конце
+		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("objects.dat"));
+		out.writeObject(max);
+		out.close();
+		
+		//зчитування об'єкту з файлу
+		ObjectInputStream in =  new ObjectInputStream (new FileInputStream("objects.dat"));
+		Polygon readMax = (Polygon)in.readObject();
+		in.close();
+		readMax.setVisible();
+		System.out.println(readMax);
 	}
 
 }
