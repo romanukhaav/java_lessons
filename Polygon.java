@@ -123,7 +123,7 @@ public abstract class Polygon implements Serializable{
 		Polygon readMax = (Polygon)in.readObject();
 		in.close();
 		readMax.setVisible(); //робимо многокутник видимим
-		System.out.println(readMax);
+		System.out.println("\nВивід зчитаного об'єкту "+readMax);
 	}
 
 }
