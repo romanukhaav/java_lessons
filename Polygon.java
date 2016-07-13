@@ -13,7 +13,6 @@ import java.util.ArrayList;
 and method for calculating of perimeter. Give your suggestions about relations 
 between classes (is-a, has-a, use-a, etc.). Find solution for avoiding of duplicate code.
 Write well commented code with examples of using these classes.
-
 	Write code for reading and writing collection of these objects from (into) file.
 	Find object with maximal perimeter.
 	The object with maximal perimeter set as invisible.
@@ -115,14 +114,17 @@ public abstract class Polygon implements Serializable{
 				
 		//создание цепи потоков с потоком вывода объекта в конце
 		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("objects.dat"));
-		out.writeObject(max);
+		out.writeObject(Polygon.getPolygonsArr());
 		out.close();
 		
 		//зчитування об'єкту з файлу
 		ObjectInputStream in =  new ObjectInputStream (new FileInputStream("objects.dat"));
-		Polygon readMax = (Polygon)in.readObject();
+		ArrayList <Polygon> readObject = (ArrayList )in.readObject();
+		ArrayList <Polygon> readMax = readObject;
 		in.close();
-		readMax.setVisible(); //робимо многокутник видимим
+	
+		System.out.println("\nВивід зчитаного об'єкту "+readMax);
+		((Polygon) readMax.get(2)).setVisible();//робимо многокутник видимим
 		System.out.println("\nВивід зчитаного об'єкту "+readMax);
 	}
 
