@@ -6,11 +6,11 @@ public class BlackJack {
 	
 	public static void main(String [] args){
 		
-		System.out.println("Игра БлэкДжек");
-		System.out.println("Введите колличество участников от компъютера");
-		System.out.println("Введите колличество участников от игроков");
+//		System.out.println("Игра БлэкДжек");
+//		System.out.println("Введите колличество участников от компъютера");
+//		System.out.println("Введите колличество участников от игроков");
 		
-		//створюємо гру з заданою кількістю гравців
+		//створюємо гру за замовчуванням - лише ПК проти користувача
 		Game gam1 = new Game();
 		
 		//запускаємо гру на виконання
@@ -23,22 +23,50 @@ public class BlackJack {
 		ArrayList <User> subUsers;
 		
 		public void start(){
-			//проводиться встановлення початкової суми готівки в кожного користувача
+			//проводиться встановлення початкової суми готівки в кожного гравця
+			for (User gamer: users) gamer.money=1500;
+			
 			//виконуються цикли поки не залишиться один гравець з грошима
 			//або поки не вийдуть з гри усі гравці користувача
-			do {
-				this.subgame();
-				//здійснюється перевірка, наявності коштів у гравців, якщо нуль то видал з users
-				//також в процесі гри кожен учасник користувача може вийти з гри = видал з users
-			}
+			do 
+				{
+					//запускаємо субгру - здачі карт і т.д.
+					this.subGame();
+					
+					//здійснюється перевірка, наявності коштів у гравців, якщо нуль то видал з users
+					//також в процесі гри кожен учасник користувача може вийти з гри = видал з users
+					for (User gamer: users) {
+						if (gamer.money<=0) users.remove(gamer);
+					}
+				}
 			while (users.size()>1);
+			
 			this.end(); //друк результатів гри + вихід з програми
 			
 		};
 		
-		public void subgame(){
+		public void subGame(){
+			//Усі наявні користувачі стають гравцями субгри
 			subUsers=(ArrayList<User>)users.clone();
-			//проводиться роздача двох карт 
+			
+			//береться повна колода карт
+			Cards subCards = new Cards();
+			
+			int banck=0; //банк субгри = 0 
+			
+			//входження субгравців
+			for (User gamer: subUsers){
+				gamer.score=0; //для кожного гравця кількість очок =0 і 
+				
+				//проводиться роздача двох карт кожному
+				gamer.getCard(subCards.giveCard());
+				gamer.getCard(subCards.giveCard());
+				
+				//кожен робить початкову ставку у банк
+				gamer.money-=10;
+				banck+=10;
+			}
+				
 			do {
 				this.cicle();
 				//почергово хід надається кожному користувачу поки не зпасують усі крім одного,
@@ -60,13 +88,25 @@ public class BlackJack {
 		public void end(){};
 		
 		Game(){
+			//введені гравці подаються у масив гравців
+			//при параметах по замовчуванню - два ПК та користувач
 			PCuser pcUs = new PCuser();
 			User us1 = new User();
+			users.add(pcUs);
+			users.add(us1);			
 		};
 		
-		Game(User...us1){
-			PCuser pcUs = new PCuser();
-			this.users = new ArrayList <User>();
+		Game(int numOfPCusrs, User...usArr){
+			//введені користувачі подаються у масив користувачів
+
+			for (int i =0; i<numOfPCusrs; i++) {
+				users.add(new PCuser()); //додаємо в масив гравців ПК
+			}
+			
+			for( User us: usArr ){ //додаємо в масив гравців користувача
+				users.add(us);
+			}
+			
 		}
 		
 	}
@@ -75,8 +115,9 @@ public class BlackJack {
 		public int score = 1500, money;
 		
 		
-		public int getCard(){
-			return score;
+		public int getCard( Card newCard){
+			this.score+=newCard.score;
+			return this.score;
 		}
 		
 		public void pas(){};
