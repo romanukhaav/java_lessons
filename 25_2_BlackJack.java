@@ -15,6 +15,8 @@ public class BlackJack {
 		
 		//запускаємо гру на виконання
 		gam1.start();
+		
+		System.out.println("Игра БлэкДжек");
 	}
 	
 	static class Game{
@@ -52,7 +54,8 @@ public class BlackJack {
 			//береться повна колода карт
 			Cards subCards = new Cards();
 			
-			int banck=0; //банк субгри = 0 
+			int banck=0;  //банк субгри = 0 
+			int stavka=1; //початкове значення ставки
 			
 			//входження субгравців
 			for (User gamer: subUsers){
@@ -63,12 +66,12 @@ public class BlackJack {
 				gamer.getCard(subCards.giveCard());
 				
 				//кожен робить початкову ставку у банк
-				gamer.money-=10;
+				gamer.money-=10*stavka;
 				banck+=10;
 			}
 				
 			do {
-				this.cicle();
+				this.cicle(subUsers);
 				//почергово хід надається кожному користувачу поки не зпасують усі крім одного,
 				//або поки хтось не відкриє карти
 			}
@@ -76,12 +79,30 @@ public class BlackJack {
 			
 		};
 		
-		public void cicle(){
+		public ArrayList<User> cicle(ArrayList<User> subUsers){
+			//друкуємо поточний стан гравців
+			
 			//прочергово надається хід кожному користувачу
-			//pas() = видалення з subusers
-			//getcard() = взяти карту з колоди
-			//doubl() = подвоїти ставку
-			//open() = відкрити карти і завершити субгру
+			for (User subuser: subUsers){
+				
+				//якщо клас гравця User
+				if (subuser.getClass() == null ) {
+					//зробіть ваш хід
+					
+					//pas() = видалення з subusers
+					//getcard() = взяти карту з колоди
+					//doubl() = подвоїти ставку
+					//open() = відкрити карти і завершити субгру
+				}
+				//якщо клас гравця PCuser
+				else {
+					//математика обчислення автоматичного ходу 
+				}
+				
+			}
+			
+			
+			return subUsers;
 			
 		};
 		
