@@ -1,12 +1,15 @@
 package lesson25;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class BlackJack {
-	
+		// случайное значение
+		static Random random = new Random();
+		
 	public static void main(String [] args){
 		
-//		System.out.println("Игра БлэкДжек");
+		System.out.println("Игра БлэкДжек");
 //		System.out.println("Введите колличество участников от компъютера");
 //		System.out.println("Введите колличество участников от игроков");
 		
@@ -19,40 +22,42 @@ public class BlackJack {
 	}
 	
 	static class Game{
-		ArrayList <User> users = new ArrayList <User>();;
+		ArrayList <User> usersGame = new ArrayList <User>();;
 		
 		public void start(){
 			//проводиться встановлення початкової суми готівки в кожного гравця
-			for (User gamer: users) gamer.money=1500;
+			for (User gamer: usersGame) gamer.money=1500;
 			
 			//виконуються цикли поки не залишиться один гравець з грошима
 			//або поки не вийдуть з гри усі гравці користувача
 			do 
 				{
 					//запускаємо субгру - здачі карт і т.д.
-					SubGame subGame = new SubGame(users);
+					SubGame subGame = new SubGame(usersGame);
 					
 					//здійснюється перевірка, наявності коштів у гравців, якщо нуль то видал з users
 					//також в процесі гри кожен учасник користувача може вийти з гри = видал з users
-					for (User gamer: users) {
-						if (gamer.money<=0) users.remove(gamer);
+					for (User gamer: usersGame) {
+						if (gamer.money<=0) usersGame.remove(gamer);
 					}
 				}
-			while (users.size()>1);
+			while (usersGame.size()>1);
 			
 			this.end(); //друк результатів гри + вихід з програми
 			
 		}
 
-		
-		public void end(){};
+		public void end(){
+			System.out.println(this.usersGame);
+		};
 		
 		//конструктор по замовчуванню
-		Game(){ 
+		Game(){
+			System.out.println("Гра за замовчуванням: ПК проти користувача");
 			//введені гравці подаються у масив гравців
 			//при параметах по замовчуванню - два ПК та користувач
-			users.add(new PCuser());
-			users.add(new User());			
+			usersGame.add(new PCuser());
+			usersGame.add(new User());
 		}
 		
 		//конструктор з мультипараметром
@@ -60,16 +65,14 @@ public class BlackJack {
 			//введені користувачі подаються у масив користувачів
 
 			for (int i =0; i<numOfPCusrs; i++) {
-				users.add(new PCuser()); //додаємо в масив гравців ПК
+				usersGame.add(new PCuser()); //додаємо в масив гравців ПК
 			}
 			
 			for( User us: usArr ){ //додаємо в масив гравців користувача
-				users.add(us);
+				usersGame.add(us);
 			}
 			
 		}
-		
-		
 		
 	}
 	
@@ -81,15 +84,18 @@ public class BlackJack {
 		int banck=0;  //банк субгри = 0 
 		int stavka=1; //початкове значення ставки
 		
-		
+		ArrayList<User> subGamers; //гравці субгри
 		
 		//конструктор subGame
 		SubGame(ArrayList<User> gamers){
-		
+			this.subGamers=(ArrayList<User>)gamers.clone();
+			System.out.println("Партія");
+			System.out.println(gamers);
+			
 			//входження субгравців
 			for (User gamer: gamers){
 				gamer.score=0; //для кожного гравця кількість очок = 0 і 
-				
+										
 				//проводиться роздача двох карт кожному
 				gamer.getCard(subCards.giveCard());
 				gamer.getCard(subCards.giveCard());
@@ -103,6 +109,7 @@ public class BlackJack {
 				this.cicle(gamers);
 				//почергово хід надається кожному користувачу поки не зпасують усі крім одного,
 				//або поки хтось не відкриє карти
+				//gamers.remove(gamers.size()-1); //симуляція відсіву гравців
 			}
 			while (gamers.size()>1);
 		}
@@ -114,17 +121,20 @@ public class BlackJack {
 			for (User subuser: subUsers){
 				
 				//якщо клас гравця User
-				if (subuser.getClass() == null ) { //!!! правильно порівняти клас!!!
+				if (subuser.getClass() != null ) { //!!! правильно порівняти клас!!!
 					//зробіть ваш хід
 					
 					//pas() = видалення з subusers
 					//getcard() = взяти карту з колоди
 					//doubl() = подвоїти ставку
 					//open() = відкрити карти і завершити субгру
+					
+					//симуляція виходу з гри для тесту
+					subuser.exit(this);
 				}
 				
 				else { //якщо клас гравця PCuser
-					
+						
 						//математика обчислення автоматичного ходу 
 						
 						if (subuser.score<=10) subuser.getCard(subCards.giveCard());
@@ -137,6 +147,9 @@ public class BlackJack {
 						if (subuser.score>21){ 
 							//процент пасування 90%
 						}
+						
+						//симуляція виходу з гри
+						subuser.exit(this);
 					}
 				}				
 			
@@ -146,31 +159,54 @@ public class BlackJack {
 	}
 	
 	static class User{
-		public int score = 1500, money;
+		public String name = "Пользователь";
+		public ArrayList<Card> userCards= new ArrayList<Card>();
+		
+		public int score = 0, money = 1500;
 		
 		public void step(){}
 		
 		public int getCard( Card newCard){
+			this.userCards.add(newCard);
 			this.score+=newCard.score;
 			return this.score;
 		}
 			
-		public void pas(){}
+		public void pas(){
+			//гравець пропускає хід
+			
+		}
+		
+		public void exit(SubGame subGame){
+			subGame.subGamers.remove(this); //вихід гравця з субгри
+			System.out.println("Хватить - виходжу з субгри! "+this);
+		}
 		
 		public void doubl(){} 
+		
+		public String toString(){
+			return this.name+": "+this.money+"; score: "+this.score;
+		}
 		
 	}
 	
 	static class PCuser extends User {
+		public String name = "Компьютер";
 		public void step(){}
+		
+		public String toString(){
+			return this.name+": "+this.money+"; score: "+this.score;
+		}
 	}
 	
 	static class Cards{
 		ArrayList <Card> cards;
+		// случайное значение
 		
 		public Card giveCard(){
 			//видаємо будь-яку карту з колоди
-			return cards.get(0);
+			int randomPosition = random.nextInt(cards.size());
+			return cards.get(randomPosition);
 		}
 		
 		Cards(){
@@ -213,8 +249,7 @@ public class BlackJack {
 		String name;
 		String lear;
 		String visual;
-		int score;
-		
+		int score;	
 	}
 	
 }
