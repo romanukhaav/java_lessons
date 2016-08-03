@@ -52,7 +52,7 @@ public class BlackJack {
 		};
 		
 		//конструктор по замовчуванню
-		Game(){
+		Game(){ 
 			System.out.println("Гра за замовчуванням: ПК проти користувача");
 			//введені гравці подаються у масив гравців
 			//при параметах по замовчуванню - два ПК та користувач
@@ -112,10 +112,12 @@ public class BlackJack {
 				//gamers.remove(gamers.size()-1); //симуляція відсіву гравців
 			}
 			while (gamers.size()>1);
+			//процедура передачі резултатів виконання субгри у гру
 		}
 		
 		public ArrayList<User> cicle(ArrayList<User> subUsers){
 			//друкуємо поточний стан гравців
+			System.out.println(subUsers);
 			
 			//прочергово надається хід кожному користувачу
 			for (User subuser: subUsers){
@@ -130,7 +132,7 @@ public class BlackJack {
 					//open() = відкрити карти і завершити субгру
 					
 					//симуляція виходу з гри для тесту
-					subuser.exit(this);
+					subuser.subExit(this);
 				}
 				
 				else { //якщо клас гравця PCuser
@@ -148,8 +150,8 @@ public class BlackJack {
 							//процент пасування 90%
 						}
 						
-						//симуляція виходу з гри
-						subuser.exit(this);
+						//симуляція виходу з субгри
+						subuser.subExit(this);
 					}
 				}				
 			
@@ -177,9 +179,13 @@ public class BlackJack {
 			
 		}
 		
-		public void exit(SubGame subGame){
-			subGame.subGamers.remove(this); //вихід гравця з субгри
+		public Object subExit(SubGame subGame){
+			
 			System.out.println("Хватить - виходжу з субгри! "+this);
+			
+			return subGame.subGamers.remove(this); //вихід гравця з субгри
+			
+			
 		}
 		
 		public void doubl(){} 
