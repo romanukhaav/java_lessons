@@ -34,6 +34,7 @@ public class BlackJack {
 				{
 					//запускаємо субгру - здачі карт і т.д.
 					SubGame subGame = new SubGame(usersGame);
+					usersGame = subGame.start();
 					
 					//здійснюється перевірка, наявності коштів у гравців, якщо нуль то видал з users
 					//також в процесі гри кожен учасник користувача може вийти з гри = видал з users
@@ -77,25 +78,27 @@ public class BlackJack {
 	}
 	
 	static class SubGame{
-		
-		//береться повна колода карт
-		Cards subCards = new Cards();
-		
+		ArrayList<User> subGamers; //гравці субгри		
+		Cards subCards = new Cards(); //береться повна колода карт 
 		int banck=0;  //банк субгри = 0 
 		int stavka=1; //початкове значення ставки
+		int numOfUsers = 0;
 		
-		ArrayList<User> subGamers; //гравці субгри
 		
 		//конструктор subGame
-		SubGame(ArrayList<User> gamers){
-			this.subGamers=(ArrayList<User>)gamers.clone();
+		SubGame(ArrayList<User> subGamers){
+			this.subGamers= subGamers;
+			this.numOfUsers = this.subGamers.size();
 			System.out.println("Партія");
-			System.out.println(gamers);
+			System.out.println(subGamers);			
+		}
+		
+		public ArrayList<User> start(){
 			
-			//входження субгравців
-			for (User gamer: gamers){
+			for (User gamer: subGamers){
+				gamer.inSubGame = true; //входження гравців в субгру 
 				gamer.score=0; //для кожного гравця кількість очок = 0 і 
-										
+									
 				//проводиться роздача двох карт кожному
 				gamer.getCard(subCards.giveCard());
 				gamer.getCard(subCards.giveCard());
@@ -106,13 +109,14 @@ public class BlackJack {
 			}
 				
 			do {
-				this.cicle(gamers);
+				this.cicle(subGamers);
 				//почергово хід надається кожному користувачу поки не зпасують усі крім одного,
 				//або поки хтось не відкриє карти
 				//gamers.remove(gamers.size()-1); //симуляція відсіву гравців
 			}
-			while (gamers.size()>1);
+			while (subGamers.size()>1);
 			//процедура передачі резултатів виконання субгри у гру
+			return subGamers;
 		}
 		
 		public ArrayList<User> cicle(ArrayList<User> subUsers){
@@ -163,8 +167,8 @@ public class BlackJack {
 	static class User{
 		public String name = "Пользователь";
 		public ArrayList<Card> userCards= new ArrayList<Card>();
-		
 		public int score = 0, money = 1500;
+		public boolean inSubGame = true;
 		
 		public void step(){}
 		
@@ -179,11 +183,11 @@ public class BlackJack {
 			
 		}
 		
-		public Object subExit(SubGame subGame){
+		public void subExit(SubGame subGame){
 			
 			System.out.println("Хватить - виходжу з субгри! "+this);
-			
-			return subGame.subGamers.remove(this); //вихід гравця з субгри
+			this.inSubGame = false;
+			//return subGame.subGamers.remove(this); //вихід гравця з субгри
 			
 			
 		}
